@@ -15,7 +15,9 @@ body a {
 a.navbar-brand {
 	padding: 0 0 0 1em;
 }
-
+#my-video{
+		height: 450px;
+	}
 nav.navbar.navbar-inverse.navbar-fixed-top {
 	padding: 1.5em 0;
 	background: #FFF;
@@ -200,7 +202,7 @@ ul.nav.nav-sidebar li a:focus {
 	display: none;
 }
 
-ul.cl-effect-1, ul.cl-effect-2 {
+ul.cl-effect-1, ul.cl-effect-2,ul.cl-effect-3,ul.cl-effect-4 {
 	display: none;
 }
 
@@ -2879,6 +2881,11 @@ span.glyphicon.glyphicon-user {
 }
 
 @media ( max-width : 480px) {
+	#my-video{
+		height: 250px;
+	}
+	
+	
 	.resent-grid-poster-img{
 	overflow:hidden;
 	position:relative;

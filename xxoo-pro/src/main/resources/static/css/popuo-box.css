@@ -511,7 +511,7 @@ button::-moz-focus-inner {
   color: #817F7F;
   border: solid 1px #817F7F;
 }
-.login input[type="submit"],.signup input[type="submit"]{
+.login input[type="submit"],.signup input[type="button"]{
     border: 0px;
     padding: .5em 2em;
     background: #21DEEF;

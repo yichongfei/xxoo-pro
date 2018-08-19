@@ -7,14 +7,12 @@
 <meta name="keywords" content="My Play Responsive web template, Bootstrap Web Templates, Flat Web Templates, Andriod Compatible web template, 
 Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, SonyErricsson, Motorola web design" />
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
-<!-- bootstrap -->
-<link href="/css/bootstrap.min.css" rel='stylesheet' type='text/css' media="all" />
-<!-- //bootstrap -->
+<link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 <link href="/css/dashboard.css" rel="stylesheet"/>
 <!-- Custom Theme files -->
 <link href="/css/style.css" rel='stylesheet' type='text/css' media="all" />
 <link href="/css/jquery.pagination.css" rel="stylesheet" type="text/css"></link>
-<script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
 <!--start-smoth-scrolling-->
 <script src="/js/jquery.pagination.min.js"></script>
 <script type="text/javascript">
@@ -100,7 +98,7 @@ $(function(){
 				</form>
 			</div>  
 			<div class="header-top-right">
-				<div class="signin">
+				<div class="signin" id="main-signup-button">
 					<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
 					<!-- pop-up-box -->
 									<script type="text/javascript" src="/js/modernizr.custom.min.js"></script>    
@@ -121,9 +119,8 @@ $(function(){
 											</div>
 										</div>
 										<div class="signup">
-											<form>
-												<input type="text" class="email" placeholder="请输入您的昵称" maxlength="15" title="请输入您的昵称" />
-											</form>
+											<p style="font-size: 14px;">此社區只適合十八歲或以上人士觀看。內容可能令人反感；不可將此論壇的內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士或將本網站內容向該人士出示、播放或放映。</p>
+											<p style="font-size: 14px;">致中國大陸用戶:本社區上發布的資源與信息, 與中國大陸相關法律抵觸, 在您瀏覽本網站時, 請自覺遵守當地法律</p>
 											<div class="continue-button">
 												<a href="#small-dialog3" class="hvr-shutter-out-horizontal play-icon popup-with-zoom-anim">继续</a>
 											</div>
@@ -145,10 +142,9 @@ $(function(){
 										</div>
 										<div class="signup">
 											<form>
-												<input type="text" class="email" placeholder="请输入您的邮箱" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
-												<input type="password" placeholder="请输入您的密码" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-												<input type="text" class="email" placeholder="请输入您的手机号,用于找回资产" maxlength="15" pattern="[1-9]{1}\d{9}" title="Enter a valid mobile number" />
-												<input type="submit"  value="注册"/>
+												<input type="text" class="email" id="email" placeholder="请输入您的邮箱" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
+												<input type="password" id="password" placeholder="请输入您的密码" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+												<input type="button" value="注册" id="signup" onclick ="register()" />
 											</form>
 										</div>
 										<div class="clearfix"> </div>
@@ -170,7 +166,7 @@ $(function(){
 											<form action="upload.html">
 												<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
 												<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-												<input type="submit"  value="Sign In"/>
+												<input type="button"  value="Sign In"/>
 											</form>
 										</div>
 										<div class="clearfix"> </div>
@@ -242,7 +238,7 @@ $(function(){
 											});
 									</script>	
 				</div>
-				<div class="signin">
+				<div class="signin" id="main-login-button">
 					<a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
 					<div id="small-dialog" class="mfp-hide">
 						<h3>登录</h3>
@@ -259,9 +255,9 @@ $(function(){
 						</div>
 						<div class="signup">
 							<form>
-								<input type="text" class="email" placeholder="账号/邮箱" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
-								<input type="password" placeholder="密码" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-								<input type="submit"  value="登录"/>
+								<input type="text" class="email" placeholder="账号/邮箱" id="login-email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
+								<input type="password" placeholder="密码" required="required" id="login-password"  pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
+								<input type="button"  value="登录" onclick = "login()"/>
 							</form>
 							<div class="forgot">
 								<a href="#">忘记密码 ?</a>
@@ -270,6 +266,17 @@ $(function(){
 						<div class="clearfix"> </div>
 					</div>
 				</div>
+				
+				
+				
+				<div id="account-information" class="signin" style="display: none" >
+					<a id="accountInformation" href="/information" th:text ="${session.account.email}" ></a>
+				</div>
+				
+				<div id="exit" class="signin"  style="display: none">
+					<a href="javascript:void(0)" class="play-icon popup-with-zoom-anim" onclick="exit()">退出</a>
+				</div>
+				
 				<div class="clearfix"> </div>
 			</div>
         </div>
@@ -279,22 +286,30 @@ $(function(){
 	
         <div class="col-sm-3 col-md-2 sidebar">
 			<div class="top-navigation">
-				<div class="t-menu">MENU</div>
+				<div class="t-menu">导航,点击展开</div>
 				<div class="t-img">
-					<img src="//images/lines.png" alt="" />
+					<img src="images/lines.png" alt="" />
 				</div>
 				<div class="clearfix"> </div>
 			</div>
 				<div class="drop-navigation drop-navigation">
 				  <ul class="nav nav-sidebar">
-					<li><a href="index.html" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>Home</a></li>
-					<li><a href="shows.html" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>TV Shows</a></li>
-					<li><a href="history.html" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>History</a></li>
-					<li><a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>Movies<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					<li class="active"><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>星辰吧主页</a></li>
+					<li><a href="/listNewVideo/0" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>最新视频</a></li>
+					<li><a href="/listHotVideo/0" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>最多播放</a></li>
+					<li><a href="#" class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
 						<ul class="cl-effect-2">
-							<li><a href="movies.html">English</a></li>                                             
-							<li><a href="movies.html">Chinese</a></li>
-							<li><a href="movies.html">Hindi</a></li> 
+							<li><a href="/listVideo/china/0">国产</a></li>                                             
+							<li><a href="/listVideo/china-better/0">国产精品</a></li>
+							<li><a href="/listVideo/america/0">欧美</a></li> 
+							<li><a href="/listVideo/dongman/0">动漫</a></li> 
+							<li><a href="/listVideo/qunjiao/0">群交</a></li> 
+							<li><a href="/listVideo/gangjiao/0">肛交</a></li> 
+							<li><a href="/listVideo/yanshe/0">颜射</a></li> 
+							<li><a href="/listVideo/japan/0">日本</a></li>
+							<li><a href="/listVideo/pornhub-asia/0">亚洲自拍</a></li> 
+							<li><a href="/listVideo/mote/0">模特</a></li> 
+							<li><a href="/listVideo/nenmo/0">嫩模</a></li> 
 						</ul>
 						<!-- script-for-menu -->
 						<script>
@@ -304,23 +319,61 @@ $(function(){
 							});
 							});
 						</script>
-					<li><a href="#" class="menu"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>Sports<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					
+					<li><a href="#" class="menu2"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>日本女优<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
 						<ul class="cl-effect-1">
-							<li><a href="sports.html">Football</a></li>                                             
-							<li><a href="sports.html">Cricket</a></li>
-							<li><a href="sports.html">Tennis</a></li> 
-							<li><a href="sports.html">Shattil</a></li>  
+							<li><a href="/listVideo/AmeriIchinose/0">AmeriIchinose</a></li>
+							<li><a href="/listVideo/cangjingkong/0">苍井空</a></li>
+							<li><a href="/listVideo/boduoyejieyi/0">波多野结衣</a></li>
+							<li><a href="/listVideo/taoguhuilixiang/0">桃谷绘里香</a></li>
 						</ul>
 						<!-- script-for-menu -->
 						<script>
-							$( "li a.menu" ).click(function() {
+							$( "li a.menu2" ).click(function() {
 							$( "ul.cl-effect-1" ).slideToggle( 300, function() {
 							// Animation complete.
 							});
 							});
 						</script>
-					<li><a href="movies.html" class="song-icon"><span class="glyphicon glyphicon-music" aria-hidden="true"></span>Songs</a></li>
-					<li class="active"><a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>News</a></li>
+					<li><a href="#" class="menu4"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>欧美女优<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+						<ul class="cl-effect-3">
+							<li><a href="/listVideo/anjelica/0">安吉莉卡</a></li>
+							<li><a href="/listVideo/belle knox/0">Belle knox</a></li>
+							<li><a href="/listVideo/LanaRHoades/0">LanaRHoades</a></li>
+							<li><a href="/listVideo/MiaKhalifa/0">MiaKhalifa</a></li>
+							<li><a href="/listVideo/RileyReid/0">RileyReid</a></li>
+							<li><a href="/listVideo/Mia Malkova/0">Mia Malkova</a></li>
+							<li><a href="/listVideo/Brandi Love/0">Brandi Love</a></li>
+							<li><a href="/listVideo/Adriana Chechik/0">Adriana Chechik</a></li>
+							<li><a href="/listVideo/Nicole Aniston/0">Nicole Aniston</a></li>
+							<li><a href="/listVideo/Lena Paul/0">Lena Paul</a></li>
+							<li><a href="/listVideo/Lisa Ann/0">Lisa Ann</a></li>
+							<li><a href="/listVideo/Alexis Texas/0">Alexis Texas</a></li>
+						</ul>
+						<!-- script-for-menu -->
+						<script>
+							$( "li a.menu4" ).click(function() {
+							$( "ul.cl-effect-3" ).slideToggle( 300, function() {
+							// Animation complete.
+							});
+							});
+						</script>
+					<li><a href="#" class="menu3"><span class="glyphicon glyphicon-music"  aria-hidden="true"></span>个人信息<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
+					<ul class="cl-effect-4">
+						<li><a href="/information">个人信息</a></li>
+						<li><a href="/information">账户余额</a></li>
+						<li><a href="/information">个人资产STAR</a></li>
+						<li><a href="/chongzhi">充值</a></li>
+						<li><a href="http://www.luoboka.com/links/F787442B794187A9">购卡</a></li>
+					</ul>
+					<script>
+							$( "li a.menu3" ).click(function() {
+							$( "ul.cl-effect-4" ).slideToggle( 300, function() {
+							// Animation complete.
+							});
+							});
+						</script>
+					<li><a href="news.html" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>邮件</a></li>
 				  </ul>
 				  <!-- script-for-menu -->
 						<script>
@@ -330,19 +383,6 @@ $(function(){
 							});
 							});
 						</script>
-					<div class="side-bottom">
-						<div class="side-bottom-icons">
-							<ul class="nav2">
-								<li><a href="#" class="facebook"> </a></li>
-								<li><a href="#" class="facebook twitter"> </a></li>
-								<li><a href="#" class="facebook chrome"> </a></li>
-								<li><a href="#" class="facebook dribbble"> </a></li>
-							</ul>
-						</div>
-						<div class="copyright">
-							<p>Copyright copy; 2015.Company name All rights reserved.</p>
-						</div>
-					</div>
 				</div>
         </div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
@@ -376,10 +416,8 @@ $(function(){
 			<!-- //footer -->
 		</div>
 		<div class="clearfix"> </div>
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="/js/bootstrap.min.js"></script>
-    <!-- Just to make our placeholder /images work. Don't actually copy the next line! -->
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="/commanjs/account.js"></script>
+    <script src="/commanjs/util.js"></script>
   </body>
 </html>
