@@ -46,11 +46,7 @@ public class IndexController {
 	private CardService cardService;
 	
 	
-	//每播放一次记录IP
-	private static ConcurrentHashMap<String, Integer> playTimes = new ConcurrentHashMap<String, Integer>();
 	
-	
-	public static long dayEnd = getEndTime();
 	
 	@RequestMapping("/")
 	public String index(Model model, HttpServletRequest request) {
@@ -130,79 +126,13 @@ public class IndexController {
 		Page<Video> list = videoService.findAll(pageable);
 		model.addAttribute("videos", list);
 		
-		HttpSession session = request.getSession();
-		Account account = (Account) session.getAttribute("account");
-		if (account != null && account.getVipDeadline() > System.currentTimeMillis()) {
-			return "videoPlay";// 会员观看次数不限制
-		}
-
-		if (System.currentTimeMillis() > dayEnd) {
-			resetPlayTimes();// 每天重置播放次数记录数据
-		}
-
-		String addr = getIpAddr(request);
-		if (playTimes.containsKey(addr)) {
-			if (playTimes.get(addr) > 10) {
-				return "videoPlayNon";
-			}
-
-			Integer times = playTimes.get(addr) + 1;
-			playTimes.put(addr, times);
-		} else {
-			playTimes.put(addr, 1);
-		}
+		
 		
 		
 		return "videoPlay";
 
 	}
 	
-	public String getIpAddr(HttpServletRequest request) {
-		String ip = request.getHeader("x-forwarded-for");
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("http_client_ip");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getRemoteAddr();
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("WL-Proxy-Client-IP");
-		}
-		if (ip == null || ip.length() == 0 || "unknown".equalsIgnoreCase(ip)) {
-			ip = request.getHeader("HTTP_X_FORWARDED_FOR");
-		}
-		// 如果是多级代理，那么取第一个ip为客户ip
-		if (ip != null && ip.indexOf(",") != -1) {
-			ip = ip.substring(ip.lastIndexOf(",") + 1, ip.length()).trim();
-		}
-		return ip;
-	}
-
-	private static void resetPlayTimes() {
-		dayEnd = getEndTime();
-		playTimes.clear();
-	}
-	
-	private static long getStartTime() {
-		Calendar todayStart = Calendar.getInstance();
-		todayStart.set(Calendar.HOUR, 0);
-		todayStart.set(Calendar.MINUTE, 0);
-		todayStart.set(Calendar.SECOND, 0);
-		todayStart.set(Calendar.MILLISECOND, 0);
-		return todayStart.getTimeInMillis();
-	}
-
-	private static long getEndTime() {
-		Calendar todayEnd = Calendar.getInstance();
-		todayEnd.set(Calendar.HOUR, 23);
-		todayEnd.set(Calendar.MINUTE, 59);
-		todayEnd.set(Calendar.SECOND, 59);
-		todayEnd.set(Calendar.MILLISECOND, 999);
-		return todayEnd.getTimeInMillis();
-	}
 	
 	
 	
@@ -210,14 +140,14 @@ public class IndexController {
 	
 	@RequestMapping("/information")
 	public String information(HttpServletRequest request) {
-		// 判断有没有登录,如果没有登录,则返回到登录界面
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("account");
-		if (account.getEmail().equals("游客")) {
-			return "pages-sign-in";
+		if(account.getEmail()=="游客") {
+			return "index";
 		}
-
-		return "informationnew";
+		
+		
+		return "information";
 	}
 	/**
 	 * 跳转到充值页面

@@ -26,11 +26,21 @@ public class Account {
 
 	private long vipDeadline;// vip截止日期
 
-	
 	private String tuiguangURL;
 	
 	private int tuiguangTimes;
 	
+	private String name; //账号昵称
+	
+	private String picPath; //头像路径
+	
+	private int money ;  //用户拥有的金钱
+	
+	private String description; //描述
+	
+	private int privilege;//权限, 0是普通权限,1是管理者权限
+	
+	private long registerTime;
 	
 	public Account() {
 		
@@ -42,6 +52,7 @@ public class Account {
 		this.password = password;
 		this.vip = false;
 		this.tuiguangURL =creatTuiguangUrl(id)+"欢迎观看形形色色华人社区,最精彩,等你来";
+		this.registerTime = System.currentTimeMillis();
 	}
 
 	/**
@@ -171,6 +182,54 @@ public class Account {
 
 	public void setTuiguangURL(String tuiguangURL) {
 		this.tuiguangURL = tuiguangURL;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getPicPath() {
+		return picPath;
+	}
+
+	public void setPicPath(String picPath) {
+		this.picPath = picPath;
+	}
+
+	public int getMoney() {
+		return money;
+	}
+
+	public void setMoney(int money) {
+		this.money = money;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public int getPrivilege() {
+		return privilege;
+	}
+
+	public void setPrivilege(int privilege) {
+		this.privilege = privilege;
+	}
+
+	public long getRegisterTime() {
+		return registerTime;
+	}
+
+	public void setRegisterTime(long registerTime) {
+		this.registerTime = registerTime;
 	}
 
 	

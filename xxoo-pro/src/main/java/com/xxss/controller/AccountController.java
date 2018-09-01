@@ -1,5 +1,7 @@
 package com.xxss.controller;
 
+import java.io.File;
+
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpSession;
 
@@ -8,11 +10,14 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xxss.aws.s3.AmazonS3Object;
+import com.xxss.config.AccountConfig;
 import com.xxss.dao.AccountService;
 import com.xxss.dao.CardService;
 import com.xxss.dao.VideoService;
 import com.xxss.entity.Account;
 import com.xxss.entity.Result;
+import com.xxss.util.ImgUtil;
 
 @Controller
 public class AccountController {
@@ -103,6 +108,48 @@ public class AccountController {
 		return "index";
 
 	}
+	
+	/**
+	 * 更新头像
+	 * 
+	 * @param email
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/account/updatePic")
+	@ResponseBody
+	public void updatePic(HttpServletRequest request,String base64url) {
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("account");
+		String generateImage = ImgUtil.GenerateImage(base64url);
+		String keyname = AmazonS3Object.uploadFile1(new File(generateImage), "talent-xinjiapo", "bbsphoto/");
+		account.setPicPath(AccountConfig.S3PATH+keyname);
+		accountService.save(account);
+	}
+	
+	
+
+	/**
+	 * 更新账号
+	 * 
+	 * @param email
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/account/update")
+	@ResponseBody
+	public void updateAccount(HttpServletRequest request,String password,String name,String description) {
+		HttpSession session = request.getSession();
+		Account account = (Account) session.getAttribute("account");
+		account.setPassword(password);
+		account.setName(name);
+		account.setDescription(description);
+		accountService.save(account);
+		session.setAttribute("account", account);
+	}
+	
+	
+	
 	
 	
 	

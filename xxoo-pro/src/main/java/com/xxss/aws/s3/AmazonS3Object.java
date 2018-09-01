@@ -126,7 +126,7 @@ public class AmazonS3Object {
 		return url.toString();
 	}
 
-	public static void uploadFile(File file, String bucket_name, String key_prefix, boolean pause) {
+	public static void uploadFile(File file, String bucket_name, String key_prefix) {
 		AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(region.getName())
 				.withCredentials(new ProfileCredentialsProvider()).build();
 		String key_name = null;
@@ -149,6 +149,38 @@ public class AmazonS3Object {
 		}
 		xfer_mgr.shutdownNow();
 		System.out.println("文件上传完毕,上传成功");
+	}
+	
+	/**
+	 * 返回KEY
+	 * @param file
+	 * @param bucket_name
+	 * @param key_prefix
+	 */
+	public static String uploadFile1(File file, String bucket_name, String key_prefix) {
+		AmazonS3 s3 = AmazonS3ClientBuilder.standard().withRegion(region.getName())
+				.withCredentials(new ProfileCredentialsProvider()).build();
+		String key_name = null;
+		if (key_prefix != null) {
+			key_name = key_prefix + '/' + file.getName();
+		} else {
+			key_name = file.getName();
+		}
+
+		TransferManager xfer_mgr = TransferManagerBuilder.standard().withS3Client(s3).build();
+		try {
+			Upload xfer = xfer_mgr.upload(bucket_name, key_name, file);
+			// loop with Transfer.isDone()
+			XferMgrProgress.showTransferProgress(xfer);
+			// or block with Transfer.waitForCompletion()
+			XferMgrProgress.waitForCompletion(xfer);
+		} catch (AmazonServiceException e) {
+			System.err.println(e.getErrorMessage());
+			System.exit(1);
+		}
+		xfer_mgr.shutdownNow();
+		System.out.println("文件上传完毕,上传成功");
+		return  key_name;
 	}
 
 	/**

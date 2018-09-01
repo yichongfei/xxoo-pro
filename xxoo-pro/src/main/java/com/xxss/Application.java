@@ -8,7 +8,9 @@ import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
 import org.springframework.context.ApplicationContext;
 
+import com.xxss.dao.AccountService;
 import com.xxss.dao.VideoService;
+import com.xxss.util.AccountCache;
 import com.xxss.util.IndexCache;
 
 @SpringBootApplication
@@ -17,12 +19,12 @@ public class Application extends SpringBootServletInitializer implements Embedde
 
 	public static void main(String[] args) throws InterruptedException {
 		ApplicationContext ctx = SpringApplication.run(Application.class, args);
-		VideoService videoService = ctx.getBean(VideoService.class);
+		AccountService accountservice = ctx.getBean(AccountService.class);
 		new Thread() {
 			public void run () {
-				IndexCache cache = new IndexCache(videoService);
+				AccountCache cache = new AccountCache(accountservice);
 				while(true) {
-					cache.updateCache();
+					cache.updateAccountMap();
 					try {
 						Thread.sleep(600000);
 					} catch (InterruptedException e) {

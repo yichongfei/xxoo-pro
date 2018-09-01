@@ -77,10 +77,31 @@ function goVideoPlay(element){
 }
 
 
+//跳转到个人信息界面
+function information(){
+	var information = $("#accountInformation").text();
+	console.log(information);
+	if(information == '游客'){
+		$("#main-login-button > a").click()
+	}else{
+		window.location.href = "/information"
+	}
+}
+//跳转到论坛界面
+function bbs(){
+	var information = $("#accountInformation").text();
+	console.log(information);
+	if(information == '游客'){
+		$("#main-login-button > a").click()
+	}else{
+		window.location.href = "/bbs"
+	}
+}
 
-
-
-
+//跳转到发布论坛界面
+function goPublishArticle(){
+	window.location.href = "/bbs/goPublishArticle";
+}
 
 
 
