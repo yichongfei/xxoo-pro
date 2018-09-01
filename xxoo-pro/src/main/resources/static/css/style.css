@@ -2959,7 +2959,7 @@ span.glyphicon.glyphicon-user {
 		width: 50%;
 	}
 	ul.nav.nav-sidebar li a {
-		padding: .8em 0 .8em 14em;
+		padding: .8em 0 .8em 4em !important;
 	}
 	.resent-grid-info p.author-info {
 		font-size: 13px;

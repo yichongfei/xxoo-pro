@@ -356,8 +356,8 @@
                     <ul id="sidebarnav">
                         <li class="nav-devider"></li>
                         <li class="nav-small-cap">导航</li>
-                        <li><a class="has-arrow waves-effect waves-dark" href="/bbs" aria-expanded="false"><i class="mdi mdi-evernote"></i><span class="hide-menu">Sex星辰约炮,星辰嫖娼</span></a></li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">视频分类 <span class="label label-rouded label-themecolor pull-right">11</span></span></a>
+                        <li><a class="has-arrow waves-effect waves-dark" href="/bbs/0" aria-expanded="false"><i class="mdi mdi-evernote"></i><span class="hide-menu">Sex星辰约炮,星辰嫖娼</span></a></li>
+                        <li> <a class="has-arrow waves-effect waves-dark"  aria-expanded="false"><i class="mdi mdi-gauge"></i><span class="hide-menu">视频分类 <span class="label label-rouded label-themecolor pull-right">11</span></span></a>
                             <ul aria-expanded="false" class="collapse">
                                	<li><a href="/listVideo/china/0">国产</a></li>                                             
 								<li><a href="/listVideo/china-better/0">国产精品</a></li>
@@ -372,7 +372,7 @@
 								<li><a href="/listVideo/nenmo/0">嫩模</a></li> 
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">日本女优</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark"  aria-expanded="false"><i class="mdi mdi-bullseye"></i><span class="hide-menu">日本女优</span></a>
                             <ul aria-expanded="false" class="collapse">
                                	<li><a href="/listVideo/AmeriIchinose/0">AmeriIchinose</a></li>
 								<li><a href="/listVideo/cangjingkong/0">苍井空</a></li>
@@ -380,7 +380,7 @@
 								<li><a href="/listVideo/taoguhuilixiang/0">桃谷绘里香</a></li>
                             </ul>
                         </li>
-                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="ti-heart"></i><span class="hide-menu">欧美女优</span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark"  aria-expanded="false"><i class="ti-heart"></i><span class="hide-menu">欧美女优</span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/listVideo/anjelica/0">安吉莉卡</a></li>
 								<li><a href="/listVideo/belle knox/0">Belle knox</a></li>
@@ -429,7 +429,7 @@
                 <div class="col-md-7 align-self-center">
                     <ol class="breadcrumb">
                         <li class="breadcrumb-item"><a href="/">主页</a></li>
-                        <li class="breadcrumb-item"><a href="/bbs">星辰论坛</a></li>
+                        <li class="breadcrumb-item"><a href="/bbs/0">星辰论坛</a></li>
                         <li class="breadcrumb-item active">发布新的主题</li>
                     </ol>
                 </div>
@@ -608,7 +608,53 @@
 			}
 			alert("文章正在发表当中,请您等候片刻,图片以及文字,视频需要处理,请等待30秒左右");
 		}
-		
+		function publishFrom2(){
+			var context =  $('#summernote2').summernote('code')
+			var category = $("#category").val()
+			var accountid = $("#accountid").val()
+			var city = $("#city").val()
+			var title = $("#title").val()
+			var accountName = $("#accountName").val()
+			
+			if(title == ""){
+				alert("您的标题不能为空");
+				return
+			}
+			if(category == "0"){
+				alert("请选择主题");
+				return
+			}else if(category =="information" && city =="0"){
+				alert("请选择城市");
+				return 
+			}
+			if(accountid == ""){
+				alert("您还未登录");
+				return
+			}
+			if(city!==0){
+				$.ajax({
+					type:"post",
+					url:"/bbs/publishArticleInformation",
+					data:{"context":context,"category":category,"accountid":accountid,"city":city,"title":title},
+					success:function(){
+						alert("发表成功");
+						window.location.href = "/bbs/goPublishArticle"
+					}
+				})
+			}else{
+				$.ajax({
+					type:"post",
+					url:"/bbs/publishArticle",
+					data:{"context":context,"category":category,"accountid":accountid,"title":title},
+					success:function(){
+						alert("发表成功");
+						window.location.href = "/bbs/goPublishArticle"
+					}
+				})
+			}
+			alert("文章正在发表当中,请您等候片刻,图片以及文字,视频需要处理,请等待30秒左右");
+		}
+
 		/*]]> */
 	</script>
 	<!-- ============================================================== -->

@@ -29,11 +29,14 @@ import com.xxss.config.AccountConfig;
 import com.xxss.config.BBSconfig;
 import com.xxss.config.S3Config;
 import com.xxss.dao.AccountService;
+import com.xxss.dao.ArticleReplyService;
 import com.xxss.dao.ArticleService;
 import com.xxss.dao.CardService;
 import com.xxss.dao.VideoService;
 import com.xxss.entity.Account;
 import com.xxss.entity.Article;
+import com.xxss.entity.ArticleReply;
+import com.xxss.entity.Result;
 import com.xxss.util.AccountCache;
 import com.xxss.util.ImgUtil;
 @Controller
@@ -51,6 +54,9 @@ public class BBScontroller {
 	@Autowired
 	private ArticleService articleservice;
 	
+	@Autowired
+	private ArticleReplyService articleReplyService;
+	
 	/**
 	 * 跳转到论坛
 	 *  
@@ -59,12 +65,6 @@ public class BBScontroller {
 	 */
 	@RequestMapping("/bbs/{page}")
 	public String bbs(@PathVariable(value = "page") Integer page,Model model) {
-		
-		
-		
-		
-		
-		
 		if(stickList.size() == 0) {
 			stickList = articleservice.findByisStickLike("1");
 		}
@@ -82,6 +82,35 @@ public class BBScontroller {
 		
 		return "bbs";
 	}
+	
+	/**
+	 * 打开某一篇文章
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/article/{page}")
+	public String getArticle(@PathVariable(value = "page") Integer page,String id,Model model) {
+		Article article = articleservice.findByid(id);
+		Account account = accountService.findByid(article.getAccountId());
+		
+		Sort sort = new Sort(Direction.ASC, "replyTime");
+		Pageable pageable = new PageRequest(page, 10, sort);
+		Page<ArticleReply> replylist = articleReplyService.findByarticleid(id, pageable);
+		
+		
+		
+		model.addAttribute("article", article);
+		model.addAttribute("account", account);
+		model.addAttribute("replylist", replylist);
+		model.addAttribute("countpage", replylist.getTotalPages());
+		model.addAttribute("curpage", page);
+		
+		return "bbsdetail";
+	}
+	
+	
+	
 	
 	/**
 	 * 跳转到论坛发布文章界面
@@ -162,6 +191,142 @@ public class BBScontroller {
 		article.setIsStick("0");
 		articleservice.save(article);
 	}
+	
+	
+	/**
+	 * 回复主题
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/replyArticle")
+	@ResponseBody
+	public Result replyArticle(HttpServletRequest request,String context,String accountid,String articleid) {
+
+		Document html = Jsoup.parse(context);
+		Elements imgs = html.getElementsByTag("img");
+		if(imgs.size()>0) {
+			for (Element element : imgs) {
+				String base64 = element.attr("src");
+				String generateImage = ImgUtil.GenerateImage(base64);
+				String keyname = AmazonS3Object.uploadFile1(new File(generateImage), "talent-xinjiapo", BBSconfig.S3BBSPHOTO_PATH);
+				keyname =AccountConfig.S3PATH+keyname;
+				element.attr("src", keyname);
+			}
+		}
+		
+		Account account = accountService.findByid(accountid);
+		
+		ArticleReply reply = new ArticleReply();
+		reply.setId(UUID.randomUUID().toString());
+		reply.setAccountid(accountid);
+		reply.setArticleid(articleid);
+		reply.setContext(html.toString());
+		reply.setReplyTime(System.currentTimeMillis());
+		reply.setPicPath(account.getPicPath());
+		reply.setAccountname(account.getName());
+		reply.setEmail(account.getEmail());
+		
+		articleReplyService.save(reply);
+		
+		Result result = new Result();
+		result.setInformation("发表回复成功");
+		return result;
+	}
+	
+	
+	
+	
+	
+	
+	/**
+	 * 发布文章 :非性息类
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/article/admire")
+	@ResponseBody
+	public Article admire(HttpServletRequest request,String id) {
+		
+		Article article = articleservice.findByid(id);
+		int times=article.getAdmireTimes();
+		article.setAdmireTimes(times+1);
+		articleservice.save(article);
+		return article;
+	}
+	
+	/**
+	 * 加精文章
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/article/highlight")
+	@ResponseBody
+	public Result highlight(HttpServletRequest request,String id) {
+		Account account =(Account) request.getSession().getAttribute("account");
+		Result result = new Result();
+		if(account.getPrivilege()!=1) {
+			result.setInformation("您没有这个权限");
+			return result;
+		}
+		Article article = articleservice.findByid(id);
+		
+		article.setIsGood("1");
+		articleservice.save(article);
+		result.setInformation("成功申请为精品帖子");
+		return result;
+	}
+	/**
+	 * 置顶
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/article/top")
+	@ResponseBody
+	public Result top(HttpServletRequest request,String id) {
+		Account account =(Account) request.getSession().getAttribute("account");
+		Result result = new Result();
+		if(account.getPrivilege()!=1) {
+			result.setInformation("您没有这个权限");
+			return result;
+		}
+		Article article = articleservice.findByid(id);
+		
+		article.setIsStick("1");
+		articleservice.save(article);
+		result.setInformation("成功为主题置顶");
+		return result;
+	}
+	/**
+	 * 删除主题
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/article/delete")
+	@ResponseBody
+	public Result delete(HttpServletRequest request,String id) {
+		Account account =(Account) request.getSession().getAttribute("account");
+		Result result = new Result();
+		if(account.getPrivilege()!=1) {
+			result.setInformation("您没有这个权限");
+			return result;
+		}
+		Article article = articleservice.findByid(id);
+		
+		articleservice.delete(article);
+		result.setInformation("成功删除该主题");
+		return result;
+	}
+	
+	
+	
+	
+	
+	
 	
 	
 	public static List<Article> getArticleName(List<Article> list){

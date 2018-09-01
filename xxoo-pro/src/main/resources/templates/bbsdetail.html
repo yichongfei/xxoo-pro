@@ -27,6 +27,7 @@
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 	<script src="/js/jquery.pagination.min.js"></script>
     <link href="/css/jquery.pagination.css" rel="stylesheet" type="text/css"></link>
+    <link href="/assets/plugins/summernote/dist/summernote.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -38,10 +39,25 @@
 .ui-pagination-container {
 	text-align: center;
 }
+@media all and (max-width:768px){
+	#context img{
+		width:250px !important;
+	}
+	
+}
+.main-button{
+	margin: 10px;
+}
 </style>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+	<!-- 隐藏域 -->
+	<input id="articleid" type="text" style="display: none" th:value="${article.id}"  />
+	<input type="text" id="accountid" style="display: none" th:value="${session.account.id}" />
+	<input type="text" id="accountName" style="display: none" th:value="${session.account.name}" />
+
+
 	<div style="display: none" id="countpage" th:attr="count=${countpage}"></div>
 	<div style="display: none" id="curpage" th:attr="curpage=${curpage}"></div>
     <!-- ============================================================== -->
@@ -302,7 +318,7 @@
                                             <div class="u-img"><img th:src="${session.account.picPath}" alt="user"/></div>
                                             <div class="u-text">
                                                 <h4 th:text="${session.account.name}"></h4>
-                                                <p class="text-muted" th:text="${session.account.email}"></p><a href="/information" class="btn btn-rounded btn-danger btn-sm">查看个人信息</a></div>
+                                                <p id="email" class="text-muted" th:text="${session.account.email}"></p><a href="/information" class="btn btn-rounded btn-danger btn-sm">查看个人信息</a></div>
                                         </div>
                                     </li>
                                     <li role="separator" class="divider"></li>
@@ -433,35 +449,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="row page-titles m-b-0">
-                <div class="col-md-5 align-self-center">
-                    <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" onclick="goPublishArticle()">发表帖子</button>
-                    <div class="btn-group">
-                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            		 您所在的城市
-                         </button>
-                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
-                             <a class="dropdown-item" href="/bbs/city/beijing">北京</a>
-                             <a class="dropdown-item" href="/bbs/city/shanghai">上海</a>
-                             <a class="dropdown-item" href="/bbs/city/guangzhou">广州</a>
-                             <a class="dropdown-item" href="/bbs/city/shenzhen">深圳</a>
-                             <a class="dropdown-item" href="/bbs/city/chengdu">成都</a>
-                             <a class="dropdown-item" href="/bbs/city/jinan">济南</a>
-                             <a class="dropdown-item" href="/bbs/city/hangzhou">杭州</a>
-                         </div>
-                     </div>
-                    
-                </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">主页</a></li>
-                        <li class="breadcrumb-item active">星辰论坛</li>
-                    </ol>
-                </div>
-                <div>
-                    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                </div>
-            </div>
+            
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid" style="padding: 0">
@@ -469,45 +457,79 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="card-body p-t-0"  style="padding: 0">
-                    <div class="card b-all shadow-none">
-                        <div class="inbox-center table-responsive">
-                            <table class="table table-hover no-wrap">
-                                <tbody>
-                                    <tr class="unread" th:each="stickArticl,itemStat: ${stickList}">
-                                        <td style="width:40px">
-                                            <div class="checkbox">
-                                                <input type="checkbox" th:id="${itemStat.count}" th:attr="data-id=${stickArticl.id}" value="check"/>
-                                                <label th:attr="for=${itemStat.count}"></label>
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-xlg-12 col-lg-12 col-md-12 bg-light-part b-l">
+                                    <div class="card-body">
+	                                       <button type="button" class="btn btn-primary btn-rounded main-button" onclick="highlight()"><i class="fa fa-heart"></i>主题加精</button>
+	                                       <button type="button" class="btn btn-secondary btn-rounded main-button" onclick="maketop()"><i class="fa fa-heart">主题置顶</i></button>
+	                                       <a href="#publish" class="btn btn-info btn-rounded main-button" ><i class="fa fa-heart">回复主题</i> </a>
+	                                       <button type="button" class="btn btn-danger btn-rounded main-button" onclick="deleteArticle()"><i class="fa fa-heart"></i>删除主题</button>
+                                    </div>
+                                    <div class="card-body p-t-0">
+                                        <div class="card b-all shadow-none">
+                                            <div class="card-body">
+                                                <h3 class="card-title m-b-0" th:text="${article.title}"></h3>
                                             </div>
-                                        </td>
-                                        <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star text-warning"></i></td>
-                                        <td class="max-texts" > <span class="label label-warning" >置顶</span> <a  th:href="'/bbs/article/0/?id='+${stickArticl.id}"  th:text="${stickArticl.title}" ></a></td>
-                                        <td class="hidden-xs-down" th:text="${stickArticl.accountName}"></td>
-                                        <td class="text-right publishtime" th:text="${stickArticl.publishTime}"> </td>
-                                    </tr>
-                                    <tr class="unread" th:each="Articl,itemStat1: ${articleList}">
-                                        <td style="width:40px">
-                                            <div class="checkbox">
-                                                <input type="checkbox" th:id="'articl'+${itemStat1.count}" th:attr="data-id=${Articl.id}" value="check"/>
-                                                <label th:attr="for='articl'+${itemStat1.count}"></label>
+                                            <div>
+                                                <hr class="m-t-0"/>
                                             </div>
-                                        </td>
-                                        <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star-o"></i></td>
-                                        <td class="max-texts" > <span class="label label-info m-r-10" th:if="${Articl.isGood =='1'}" >精品</span> <a th:href="'/bbs/article/0/?id='+${Articl.id}" th:text="${Articl.title}" ></a></td>
-                                        <td class="hidden-xs-down" th:text="${Articl.accountName}"></td>
-                                        <td class="text-right publishtime" th:text="${Articl.publishTime}">  </td>
-                                    </tr>
-                                     
-                                 </tbody>
-                            </table>
-                            
+                                            <div class="card-body">
+                                                <div class="d-flex m-b-40">
+                                                    <div>
+                                                        <a href="javascript:void(0)"><img th:src="${account.picPath}" alt="user" width="80" class="img-circle" /></a>
+                                                    </div>
+                                                    <div class="p-l-10">
+                                                        <h4 class="m-b-0" th:text="${account.name}"></h4>
+                                                        <small class="text-muted" th:text="${account.email}"></small>
+                                                    </div>
+                                                </div>
+                                                <div id="context" th:utext ="${article.context}">
+                                                </div>
+                                                 <div class="b-all m-t-20 p-20">
+                                                    <p class="p-b-20">点击这里进行回复 <a href="#publish">回复</a> </p>
+                                                </div>
+                                            </div>
+                                            <div>
+                                            	<hr class="m-t-0"/>
+                                         	</div>
+                                            
+                                            <div>
+                                            	<div class="card-body" th:each="reply: ${replylist}">
+                                                <div class="d-flex m-b-40">
+                                                    <div>
+                                                        <a href="javascript:void(0)"><img th:src="${reply.picPath}" alt="user" width="80" class="img-circle" /></a>
+                                                    </div>
+                                                    <div class="p-l-10">
+                                                        <h4 class="m-b-0" th:text="${reply.accountname}"></h4>
+                                                        <small class="text-muted" th:text="${reply.email}"></small>
+                                                    </div>
+                                                </div>
+                                                <div  th:utext ="${reply.context}"></div>
+                                                <div>
+                                           		<hr class="m-t-0"/>
+                                        	    </div>
+                                            </div>
+                                           	 <div id="pagination3"></div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
                         </div>
-                          <div id="pagination3"></div>
                     </div>
-                  
                 </div>
-                
+                <div class="card">
+                    <div class="card-body">
+                        <div id="summernote1" >
+                            <h3>您可以在这里回复</h3>
+                        </div>
+                        <button id="publish" class="btn waves-effect waves-light btn-rounded btn-primary"  style="margin-top: 10px" onclick="replyArticle()" type="button">回复</button>
+                    </div>
+                </div>
+        
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -562,8 +584,23 @@
 	<script src="/js/cropper.min.js"></script>
 	<script src="/commanjs/account.js"></script>
     <script src="/commanjs/util.js"></script>
+    <script src="/assets/plugins/summernote/dist/summernote.min.js"></script>
 <script type="text/javascript">
 	/* <![CDATA[ */
+jQuery(document).ready(function() {
+	$('#summernote1').summernote({
+		height : 350, // set editor height
+		minHeight : null, // set minimum height of editor
+		maxHeight : null, // set maximum height of editor
+		focus : false
+	// set focus to editable area after initializing summernote
+	});
+
+	$('.inline-editor').summernote({
+		airMode : true
+	});
+
+});
 Date.prototype.format = function(format)
 {
  var o = {
@@ -584,6 +621,7 @@ Date.prototype.format = function(format)
  return format;
 }
 $(function(){
+	var id =$("#articleid").val();
 	var count = $('#countpage').attr('count');
 	var curpage = $('#curpage').attr('curpage')*1+1;
 	$("#pagination3").pagination({
@@ -596,16 +634,71 @@ $(function(){
 		prevPageText: "上一页",
 		nextPageText: "下一页",
 		callback: function(current) {
-			window.location.href = "/bbs/"+(current*1-1);
+			window.location.href = "/bbs/article/"+(current*1-1)+"/?id="+id;
 		}
 	});
 	$(".publishtime").each(function(){
 		$(this).text(new Date($(this).text()*1).format('yyyy-MM-dd hh:mm'));
 	});
-	$("#pagination3 > div > input[type='text']").css("height","29px")
-	
+	$("#pagination3 > div > input[type='text']").css("height","29px");
 	
 });
+//加精
+function highlight(){
+	var id =$("#articleid").val();
+	$.ajax({
+		url:"/bbs/article/highlight",
+		data:{"id":id},
+		success:function(data){
+			alert(data.information)
+		}
+	})
+}
+//置顶
+function maketop(){
+	var id =$("#articleid").val();
+	$.ajax({
+		url:"/bbs/article/top",
+		data:{"id":id},
+		success:function(data){
+			alert(data.information)
+		}
+	})
+}
+//删除主题
+function deleteArticle(){
+	var id =$("#articleid").val();
+	$.ajax({
+		url:"/bbs/article/delete",
+		data:{"id":id},
+		success:function(data){
+			alert(data.information)
+			window.location.href="/bbs/0"
+		}
+	})
+}
+function replyArticle(){
+	var context =  $('#summernote1').summernote('code')
+	var accountid = $("#accountid").val()
+	var articleid = $("#articleid").val()
+	if(accountid == ''){
+		alert("请您登陆")
+		return
+	}else{
+		$.ajax({
+			type:"post",
+			url:"/bbs/replyArticle",
+			data:{"context":context,"accountid":accountid,"articleid":articleid},
+			success:function(data){
+				alert(data.information);
+				window.location.reload();
+			}
+		})
+	}
+	
+}
+
+
     /*]]> */
 </script>
     
