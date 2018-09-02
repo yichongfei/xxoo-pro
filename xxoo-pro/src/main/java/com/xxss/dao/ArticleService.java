@@ -14,4 +14,8 @@ public interface ArticleService  extends JpaRepository<Article, String>{
 	List<Article> findByisStickLike(String isStick);
 	
 	Page<Article> findByisStickLike(String isStick,Pageable pageable);
+	
+	Page<Article> findByisGoodLike(String isGood,Pageable pageable);
+	
+	Page<Article> findBycityLike(String city,Pageable pageable);
 }

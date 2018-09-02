@@ -23,6 +23,8 @@
     <link href="/assets/css/colors/blue.css" id="theme" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/cropper.min.css"/>
     <link rel="stylesheet" href="/css/ImgCropping.css"/>
+    <link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
+    <link href="/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
     <script src="/assets/plugins/jquery/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 	<script src="/js/jquery.pagination.min.js"></script>
@@ -44,6 +46,7 @@
 <body class="fix-header fix-sidebar card-no-border">
 	<div style="display: none" id="countpage" th:attr="count=${countpage}"></div>
 	<div style="display: none" id="curpage" th:attr="curpage=${curpage}"></div>
+	<input type="text" id="pathurl" style="display: none" th:value="${pathurl}"/>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -434,29 +437,83 @@
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
             <div class="row page-titles m-b-0">
-                <div class="col-md-5 align-self-center">
+                <div class="col-md-12 align-self-center">
                     <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" onclick="goPublishArticle()">发表帖子</button>
-                    <div class="btn-group">
-                         <button type="button" class="btn btn-warning dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                            		 您所在的城市
-                         </button>
-                         <div class="dropdown-menu" x-placement="bottom-start" style="position: absolute; transform: translate3d(0px, 36px, 0px); top: 0px; left: 0px; will-change: transform;">
-                             <a class="dropdown-item" href="/bbs/city/beijing">北京</a>
-                             <a class="dropdown-item" href="/bbs/city/shanghai">上海</a>
-                             <a class="dropdown-item" href="/bbs/city/guangzhou">广州</a>
-                             <a class="dropdown-item" href="/bbs/city/shenzhen">深圳</a>
-                             <a class="dropdown-item" href="/bbs/city/chengdu">成都</a>
-                             <a class="dropdown-item" href="/bbs/city/jinan">济南</a>
-                             <a class="dropdown-item" href="/bbs/city/hangzhou">杭州</a>
-                         </div>
-                     </div>
-                    
+                    <button onclick="window.location.href='/bbs/good/0'" type="button" class="btn waves-effect waves-light btn-rounded btn-success" >精华专区</button>
+                    <button onclick="window.location.href='/bbs/0'" type="button" class="btn waves-effect waves-light btn-rounded btn-success" >普通专区</button>
                 </div>
-                <div class="col-md-7 align-self-center">
-                    <ol class="breadcrumb">
-                        <li class="breadcrumb-item"><a href="/">主页</a></li>
-                        <li class="breadcrumb-item active">星辰论坛</li>
-                    </ol>
+                <div class="col-md-5 align-self-center" style="margin-top: 10px;">
+                                <select id="city" class="select2 form-control custom-select select2-hidden-accessible" style="width: 100%; height:52px; margin: 8px" tabindex="-1" aria-hidden="true">
+                                    <option>查询性息,请选择城市</option>
+                                    <optgroup label="热门城市">
+                                        <option value="北京">北京</option>
+                                        <option value="上海">上海</option>
+                                        <option value="广州">广州</option>
+                                        <option value="深圳">深圳</option>
+                                        <option value="杭州">杭州</option>
+                                        <option value="济南">济南</option>
+                                        <option value="成都">成都</option>
+                                        <option value="香港">香港</option>
+                                    </optgroup>
+                            <!--         <optgroup label="广东省">  　
+                                        <option value="CA">东莞市</option>
+                                        <option value="NV">广州</option>
+                                        <option value="WA">珠海</option>
+                                        <option value="WA">佛山</option>
+                                        <option value="WA">中山</option>
+                                        <option value="WA">惠州</option>
+                                        <option value="WA">江门</option>
+                                        <option value="WA">汕头</option>
+                                        <option value="WA">湛江</option>
+                                        <option value="WA">河源</option>
+                                        <option value="WA">肇庆</option>
+                                        <option value="WA">潮州</option>
+                                        <option value="WA">清远</option>
+                                        <option value="WA">揭阳</option>
+                                        <option value="WA">阳江</option>
+                                        <option value="WA">云浮</option>
+                                        <option value="WA">茂名</option>
+                                        <option value="WA">梅州</option>
+                                        <option value="WA">汕尾市</option>
+                                    </optgroup>
+                                    <optgroup label="山东省">
+                                        <option value="AZ">济南</option>
+                                        <option value="CO">青岛</option>
+                                        <option value="ID">临沂</option>
+                                        <option value="MT">济宁</option>
+                                        <option value="NE">菏泽</option>
+                                        <option value="NM">烟台</option>
+                                        <option value="NM">泰安</option>
+                                        <option value="NM">烟台</option>
+                                        <option value="NM">淄博</option>
+                                        <option value="NM">潍坊</option>
+                                        <option value="NM">日照</option>
+                                        <option value="NM">威海</option>
+                                        <option value="NM">滨州</option>
+                                        <option value="NM">东营</option>
+                                        <option value="NM">聊城</option>
+                                        <option value="NM">德州</option>
+                                        <option value="NM">莱芜</option>
+                                        <option value="NM">枣庄</option>
+                                    </optgroup>
+                                    <optgroup label="江苏省">
+                                        <option value="AZ">苏州</option>
+                                        <option value="CO">徐州</option>
+                                        <option value="ID">盐城</option>
+                                        <option value="MT">无锡</option>
+                                        <option value="NE">南京</option>
+                                        <option value="NM">南通</option>
+                                        <option value="NM">连云港</option>
+                                        <option value="NM">常州</option>
+                                        <option value="NM">扬州</option>
+                                        <option value="NM">镇江</option>
+                                        <option value="NM">淮安</option>
+                                        <option value="NM">泰州</option>
+                                        <option value="NM">宿迁</option>
+                                    </optgroup> -->
+                                    
+                                   
+                                </select>
                 </div>
                 <div>
                     <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
@@ -562,6 +619,7 @@
 	<script src="/js/cropper.min.js"></script>
 	<script src="/commanjs/account.js"></script>
     <script src="/commanjs/util.js"></script>
+    <script src="/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
 <script type="text/javascript">
 	/* <![CDATA[ */
 Date.prototype.format = function(format)
@@ -586,6 +644,7 @@ Date.prototype.format = function(format)
 $(function(){
 	var count = $('#countpage').attr('count');
 	var curpage = $('#curpage').attr('curpage')*1+1;
+	var pathurl = $("#pathurl").val();
 	$("#pagination3").pagination({
 		currentPage: curpage,
 		totalPage: count,
@@ -596,7 +655,7 @@ $(function(){
 		prevPageText: "上一页",
 		nextPageText: "下一页",
 		callback: function(current) {
-			window.location.href = "/bbs/"+(current*1-1);
+			window.location.href = pathurl+(current*1-1);
 		}
 	});
 	$(".publishtime").each(function(){
@@ -604,7 +663,13 @@ $(function(){
 	});
 	$("#pagination3 > div > input[type='text']").css("height","29px")
 	
-	
+	$("#city").on("change",function(){
+	 	window.location.href="/bbs/city/"+$(this).val()+"/0";
+	})
+});
+
+jQuery(document).ready(function() {
+	 $(".select2").select2();
 });
     /*]]> */
 </script>

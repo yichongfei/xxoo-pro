@@ -58,7 +58,7 @@ public class BBScontroller {
 	private ArticleReplyService articleReplyService;
 	
 	/**
-	 * 跳转到论坛
+	 * 跳转到论坛,普通查询
 	 *  
 	 * @param request
 	 * @return
@@ -79,9 +79,43 @@ public class BBScontroller {
 		model.addAttribute("articleList",articleList);
 		model.addAttribute("countpage", articleList.getTotalPages());
 		model.addAttribute("curpage", page);
+		model.addAttribute("pathurl","/bbs/");
+		
 		
 		return "bbs";
 	}
+	
+	
+	/**
+	 * 跳转到论坛,普通查询
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/good/{page}")
+	public String bbsByGood(@PathVariable(value = "page") Integer page,Model model) {
+		if(stickList.size() == 0) {
+			stickList = articleservice.findByisStickLike("1");
+		}
+		Sort sort = new Sort(Direction.DESC, "publishTime");
+		Pageable pageable = new PageRequest(page, 10, sort);
+		Page<Article> articleList = articleservice.findByisGoodLike("1", pageable);
+		
+		getArticleName(articleList);
+		getArticleName(stickList);
+		
+		model.addAttribute("stickList", stickList);
+		model.addAttribute("articleList",articleList);
+		model.addAttribute("countpage", articleList.getTotalPages());
+		model.addAttribute("curpage", page);
+		model.addAttribute("pathurl","/bbs/good/");
+		
+		
+		return "bbs";
+	}
+	
+	
+	
 	
 	/**
 	 * 打开某一篇文章
@@ -108,6 +142,39 @@ public class BBScontroller {
 		
 		return "bbsdetail";
 	}
+	
+	/**
+	 * 选择城市,查看性息
+	 *  
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/bbs/city/{city}/{page}")
+	public String goCityCategory(@PathVariable(value = "city") String city,@PathVariable(value = "page") Integer page, Model model) {
+		if(stickList.size() == 0) {
+			stickList = articleservice.findByisStickLike("1");
+		}
+		Sort sort = new Sort(Direction.DESC, "publishTime");
+		Pageable pageable = new PageRequest(page, 10, sort);
+		Page<Article> articleList = articleservice.findBycityLike(city, pageable);
+		
+		getArticleName(articleList);
+		getArticleName(stickList);
+
+		
+		model.addAttribute("stickList", stickList);
+		model.addAttribute("articleList",articleList);
+		model.addAttribute("countpage", articleList.getTotalPages());
+		model.addAttribute("curpage", page);
+		model.addAttribute("pathurl", "/bbs/city/"+city+"/");
+		
+		return "bbs";
+	}
+	
+	
+	
+	
+	
 	
 	
 	

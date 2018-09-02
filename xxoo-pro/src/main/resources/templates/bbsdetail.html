@@ -56,6 +56,7 @@
 	<input id="articleid" type="text" style="display: none" th:value="${article.id}"  />
 	<input type="text" id="accountid" style="display: none" th:value="${session.account.id}" />
 	<input type="text" id="accountName" style="display: none" th:value="${session.account.name}" />
+	
 
 
 	<div style="display: none" id="countpage" th:attr="count=${countpage}"></div>
@@ -483,7 +484,8 @@
                                                     </div>
                                                     <div class="p-l-10">
                                                         <h4 class="m-b-0" th:text="${account.name}"></h4>
-                                                        <small class="text-muted" th:text="${account.email}"></small>
+                                                        <p class="text-muted" th:text="${account.email}"></p>
+                                                        <p class="text-muted publishtime" th:text="${article.publishTime}"></p>
                                                     </div>
                                                 </div>
                                                 <div id="context" th:utext ="${article.context}">
