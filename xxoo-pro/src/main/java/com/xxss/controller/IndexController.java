@@ -194,4 +194,19 @@ public class IndexController {
 		return result;
 
 	}
+	
+	/**
+	 * 跳转到塞子界面
+	 * 
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/saizi")
+	public String saizi(HttpServletRequest request) {
+
+		return "saizi";
+
+	}
+	
+	
 }

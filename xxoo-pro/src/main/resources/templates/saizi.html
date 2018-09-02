@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8"/>
+    <title>Document</title>
+    <style>
+        *{
+            padding: 0;
+            margin:0;
+        }
+        html,body
+        {
+          color:aliceblue;
+         font-size: 150px;
+          text-align: center;
+        }
+        .text{
+            width:200px;
+            height:200px;
+            position:relative;
+            margin:200px;
+            transform: perspective(800px);
+            transform-style: preserve-3d;
+            transition: transform 3s ease 0s;
+        }
+        .text:hover{
+            transform: rotate3d(1,1,1,180deg);
+        }
+        .text .mace{
+            width:200px;
+            height:200px;
+            background:url(/images/saizi.jpg) no-repeat ;
+            position:absolute;
+            left:0;
+            top:0;
+        }
+        .mace:nth-child(1){
+            transform:translateZ(-100px);
+        }
+        .mace:nth-child(2){
+            transform:translateZ(100px);
+        }
+        .mace:nth-child(3){
+            transform:translateX(-100px) rotateY(90deg);
+        }
+         .mace:nth-child(4){
+            transform:translateX(100px) rotateY(90deg);
+        }
+         .mace:nth-child(5){
+            transform:translateY(-100px) rotateX(90deg);
+        }
+        .mace:nth-child(6){
+            transform:translateY(100px) rotateX(90deg);
+        }
+        
+    </style>
+</head>
+<body>
+    <div class="text">
+        <div class="mace">1</div>
+        <div class="mace">2</div>
+        <div class="mace">3</div>
+        <div class="mace">4</div>
+        <div class="mace">5</div>
+        <div class="mace">6</div>
+        
+        
+        
+    </div>
+</body>
+</html>
