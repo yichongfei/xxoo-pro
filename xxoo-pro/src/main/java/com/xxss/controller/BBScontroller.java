@@ -87,7 +87,7 @@ public class BBScontroller {
 	
 	
 	/**
-	 * 跳转到论坛,普通查询
+	 * 跳转到精品区
 	 *  
 	 * @param request
 	 * @return
@@ -131,6 +131,10 @@ public class BBScontroller {
 		Sort sort = new Sort(Direction.ASC, "replyTime");
 		Pageable pageable = new PageRequest(page, 10, sort);
 		Page<ArticleReply> replylist = articleReplyService.findByarticleid(id, pageable);
+		for (ArticleReply articleReply : replylist) {
+			articleReply.setAccountname(AccountCache.accountMap.get(articleReply.getAccountid()).getName());
+		}
+		
 		
 		
 		

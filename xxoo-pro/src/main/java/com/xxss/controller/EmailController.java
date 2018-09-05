@@ -169,6 +169,10 @@ public class EmailController {
 	@ResponseBody
 	public void getNotReadEmail(String id ,HttpServletRequest request) {
 		
+		if(id == null) {
+			return ;
+		}
+		
 		List<Email> list = emailService.findBytargetEmail(AccountCache.accountMap.get(id).getEmail());
 		
 		if(list.size()==0) {
