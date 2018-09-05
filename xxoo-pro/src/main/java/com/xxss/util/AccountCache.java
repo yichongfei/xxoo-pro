@@ -24,6 +24,7 @@ public class AccountCache {
 		List<Account> list = accountservice.findAll();
 		for (Account account : list) {
 			accountMap.put(account.getId(), account);
+			accountMap.put(account.getEmail(), account);
 		}
 	}
 }

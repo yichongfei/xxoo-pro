@@ -199,7 +199,7 @@ public class BBScontroller {
 	 */
 	@RequestMapping("/bbs/publishArticleInformation")
 	@ResponseBody
-	public void publishArticle(HttpServletRequest request,String context,String accountid,String category,String city,String title) {
+	public void publishArticle(HttpServletRequest request,String context,String accountid,String category,String city,String title,String isCost,String price,String costContext) {
 		
 		Document html = Jsoup.parse(context);
 		Elements imgs = html.getElementsByTag("img");
@@ -222,42 +222,13 @@ public class BBScontroller {
 		article.setPublishTime(System.currentTimeMillis());
 		article.setTitle(title);
 		article.setIsStick("0");
+		article.setIsCost(isCost);
+		article.setPrice(Integer.valueOf(price));
+		article.setCostContext(costContext);
 		articleservice.save(article);
 	}
 	
-	/**
-	 * 发布文章 :非性息类
-	 *  
-	 * @param request
-	 * @return
-	 */
-	@RequestMapping("/bbs/publishArticle")
-	@ResponseBody
-	public void publishArticle(HttpServletRequest request,String context,String accountid,String category,String title) {
-
-		Document html = Jsoup.parse(context);
-		Elements imgs = html.getElementsByTag("img");
-		if(imgs.size()>0) {
-			for (Element element : imgs) {
-				String base64 = element.attr("src");
-				String generateImage = ImgUtil.GenerateImage(base64);
-				String keyname = AmazonS3Object.uploadFile1(new File(generateImage), "talent-xinjiapo", BBSconfig.S3BBSPHOTO_PATH);
-				keyname =AccountConfig.S3PATH+keyname;
-				element.attr("src", keyname);
-			}
-		}
-		
-		
-		Article article = new Article();
-		article.setAccountId(accountid);
-		article.setCategory(category);
-		article.setContext(context);
-		article.setId(UUID.randomUUID().toString());
-		article.setPublishTime(System.currentTimeMillis());
-		article.setTitle(title);
-		article.setIsStick("0");
-		articleservice.save(article);
-	}
+	
 	
 	
 	/**

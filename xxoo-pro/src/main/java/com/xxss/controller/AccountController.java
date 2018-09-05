@@ -31,6 +31,42 @@ public class AccountController {
 
 	@Autowired
 	private CardService cardService;
+	
+	
+	
+	/**
+	 * 跳转到登录界面
+	 * 
+	 * @param email
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/goLogin")
+	public String goLogin(HttpServletRequest request) {
+		
+		return "login";
+
+	}
+	
+	
+	/**
+	 * 跳转到登录界面
+	 * 
+	 * @param email
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/goRegister")
+	public String goRegister(HttpServletRequest request) {
+		
+		return "register";
+
+	}
+	
+	
+	
+	
+	
 	/**
 	 * 注册账号
 	 * 

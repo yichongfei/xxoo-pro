@@ -15,6 +15,7 @@ function register(){
 					alert(data.information);
 				}else{
 					alert(data.information+",请您登录")
+					window.location.href="/goLogin";
 				}
 			}
 		});
@@ -40,7 +41,7 @@ function login(){
 				}else{
 					//如果登录成功,显示退出按钮,隐藏登录注册按钮
 					alert(data.information);
-					window.location.href="/";
+					window.location.href="/information";
 				}
 			}
 		});
@@ -106,7 +107,15 @@ function goPublishArticle(){
 
 
 
-
+$(document).ready(function(){
+	 var notreadforid = $("#accountid").val()
+	 if(notreadforid!==""){
+		 $.ajax({
+			 url:"/email/getNotReadEmail",
+			 data:{"id":notreadforid}
+		 })
+	 }
+})
 
 
 

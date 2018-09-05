@@ -23,12 +23,11 @@
     <link href="/assets/css/colors/blue.css" id="theme" rel="stylesheet"/>
     <link rel="stylesheet" href="/css/cropper.min.css"/>
     <link rel="stylesheet" href="/css/ImgCropping.css"/>
-    <link href="/assets/plugins/select2/dist/css/select2.min.css" rel="stylesheet" type="text/css"/>
-    <link href="/assets/plugins/bootstrap-select/bootstrap-select.min.css" rel="stylesheet"/>
     <script src="/assets/plugins/jquery/jquery.min.js"></script>
     <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
 	<script src="/js/jquery.pagination.min.js"></script>
     <link href="/css/jquery.pagination.css" rel="stylesheet" type="text/css"></link>
+    <link href="/assets/plugins/summernote/dist/summernote.css" rel="stylesheet" />
     <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
     <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
     <!--[if lt IE 9]>
@@ -40,15 +39,18 @@
 .ui-pagination-container {
 	text-align: center;
 }
-.email-noread .
 </style>
 </head>
 
 <body class="fix-header fix-sidebar card-no-border">
+	<!-- 隐藏域 -->
+	<input type="text" id="accountid" style="display: none" th:value="${session.account.id}" />
+	<input type="text" id="accountName" style="display: none" th:value="${session.account.name}" />
+	
+
+
 	<div style="display: none" id="countpage" th:attr="count=${countpage}"></div>
 	<div style="display: none" id="curpage" th:attr="curpage=${curpage}"></div>
-	<input type="text" id="pathurl" style="display: none" th:value="${pathurl}"/>
-	<input type="text" id="accountid" style="display: none" th:value="${session.account.id}"/>
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
     <!-- ============================================================== -->
@@ -258,7 +260,7 @@
 								<li><a href="/listVideo/Alexis Texas/0">Alexis Texas</a></li>
                             </ul>
                         </li>
-                        <li id="question1"> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">个人信息 <span class="label label-rouded label-danger pull-right"></span></span></a>
+                        <li> <a class="has-arrow waves-effect waves-dark" href="#" aria-expanded="false"><i class="mdi mdi-chart-bubble"></i><span class="hide-menu">个人信息 <span class="label label-rouded label-danger pull-right"></span></span></a>
                             <ul aria-expanded="false" class="collapse">
                                 <li><a href="/information">个人信息</a></li>
 								<li><a href="/information">账户余额</a></li>
@@ -284,89 +286,7 @@
             <!-- ============================================================== -->
             <!-- Bread crumb and right sidebar toggle -->
             <!-- ============================================================== -->
-            <div class="row page-titles m-b-0">
-                <div class="col-md-12 align-self-center">
-                    <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" onclick="goPublishArticle()">发表帖子</button>
-                    <button onclick="window.location.href='/bbs/good/0'" type="button" class="btn waves-effect waves-light btn-rounded btn-success" >精华专区</button>
-                    <button onclick="window.location.href='/bbs/0'" type="button" class="btn waves-effect waves-light btn-rounded btn-success" >普通专区</button>
-                </div>
-                <div class="col-md-5 align-self-center" style="margin-top: 10px;">
-                                <select id="city" class="select2 form-control custom-select select2-hidden-accessible" style="width: 100%; height:52px; margin: 8px" tabindex="-1" aria-hidden="true">
-                                    <option>查询性息,请选择城市</option>
-                                    <optgroup label="热门城市">
-                                        <option value="北京">北京</option>
-                                        <option value="上海">上海</option>
-                                        <option value="广州">广州</option>
-                                        <option value="深圳">深圳</option>
-                                        <option value="杭州">杭州</option>
-                                        <option value="济南">济南</option>
-                                        <option value="成都">成都</option>
-                                        <option value="香港">香港</option>
-                                    </optgroup>
-                            <!--         <optgroup label="广东省">  　
-                                        <option value="CA">东莞市</option>
-                                        <option value="NV">广州</option>
-                                        <option value="WA">珠海</option>
-                                        <option value="WA">佛山</option>
-                                        <option value="WA">中山</option>
-                                        <option value="WA">惠州</option>
-                                        <option value="WA">江门</option>
-                                        <option value="WA">汕头</option>
-                                        <option value="WA">湛江</option>
-                                        <option value="WA">河源</option>
-                                        <option value="WA">肇庆</option>
-                                        <option value="WA">潮州</option>
-                                        <option value="WA">清远</option>
-                                        <option value="WA">揭阳</option>
-                                        <option value="WA">阳江</option>
-                                        <option value="WA">云浮</option>
-                                        <option value="WA">茂名</option>
-                                        <option value="WA">梅州</option>
-                                        <option value="WA">汕尾市</option>
-                                    </optgroup>
-                                    <optgroup label="山东省">
-                                        <option value="AZ">济南</option>
-                                        <option value="CO">青岛</option>
-                                        <option value="ID">临沂</option>
-                                        <option value="MT">济宁</option>
-                                        <option value="NE">菏泽</option>
-                                        <option value="NM">烟台</option>
-                                        <option value="NM">泰安</option>
-                                        <option value="NM">烟台</option>
-                                        <option value="NM">淄博</option>
-                                        <option value="NM">潍坊</option>
-                                        <option value="NM">日照</option>
-                                        <option value="NM">威海</option>
-                                        <option value="NM">滨州</option>
-                                        <option value="NM">东营</option>
-                                        <option value="NM">聊城</option>
-                                        <option value="NM">德州</option>
-                                        <option value="NM">莱芜</option>
-                                        <option value="NM">枣庄</option>
-                                    </optgroup>
-                                    <optgroup label="江苏省">
-                                        <option value="AZ">苏州</option>
-                                        <option value="CO">徐州</option>
-                                        <option value="ID">盐城</option>
-                                        <option value="MT">无锡</option>
-                                        <option value="NE">南京</option>
-                                        <option value="NM">南通</option>
-                                        <option value="NM">连云港</option>
-                                        <option value="NM">常州</option>
-                                        <option value="NM">扬州</option>
-                                        <option value="NM">镇江</option>
-                                        <option value="NM">淮安</option>
-                                        <option value="NM">泰州</option>
-                                        <option value="NM">宿迁</option>
-                                    </optgroup> -->
-                                    
-                                   
-                                </select>
-                </div>
-                <div>
-                    <button class="right-side-toggle waves-effect waves-light btn-inverse btn btn-circle btn-sm pull-right m-l-10"><i class="ti-settings text-white"></i></button>
-                </div>
-            </div>
+            
             <!-- Container fluid  -->
             <!-- ============================================================== -->
             <div class="container-fluid" style="padding: 0">
@@ -374,45 +294,48 @@
                 <!-- Start Page Content -->
                 <!-- ============================================================== -->
                 <!-- Row -->
-                <div class="card-body p-t-0"  style="padding: 0">
-                    <div class="card b-all shadow-none">
+                <div class="row">
+                    <div class="col-lg-12">
+                        <div class="card">
+                            <div class="row">
+                                <div class="col-xlg-12 col-lg-12 col-md-12 bg-light-part b-l">
+                                    <div class="card b-all shadow-none">
                         <div class="inbox-center table-responsive">
+                        	<div class="button-group" style="margin: 10px;">
+                                    <button type="button" class="btn waves-effect waves-light btn-rounded btn-primary" onclick = "window.location.href= '/email/sendEmailpage'">发送新邮件</button>
+                            </div>
                             <table class="table table-hover no-wrap">
                                 <tbody>
-                                    <tr class="unread" th:each="stickArticl,itemStat: ${stickList}">
+                                    <tr class="unread" th:each="email,itemStat1: ${pageEmail}">
                                         <td style="width:40px">
                                             <div class="checkbox">
-                                                <input type="checkbox" th:id="${itemStat.count}" th:attr="data-id=${stickArticl.id}" value="check"/>
-                                                <label th:attr="for=${itemStat.count}"></label>
-                                            </div>
-                                        </td>
-                                        <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star text-warning"></i></td>
-                                        <td class="max-texts" > <span class="label label-warning" >置顶</span> <a  th:href="'/bbs/article/0/?id='+${stickArticl.id}"  th:text="${stickArticl.title}" ></a></td>
-                                        <td class="hidden-xs-down" th:text="${stickArticl.accountName}"></td>
-                                        <td class="text-right publishtime" th:text="${stickArticl.publishTime}"> </td>
-                                    </tr>
-                                    <tr class="unread" th:each="Articl,itemStat1: ${articleList}">
-                                        <td style="width:40px">
-                                            <div class="checkbox">
-                                                <input type="checkbox" th:id="'articl'+${itemStat1.count}" th:attr="data-id=${Articl.id}" value="check"/>
-                                                <label th:attr="for='articl'+${itemStat1.count}"></label>
+                                                <input type="checkbox" th:id="'email'+${itemStat1.count}" th:attr="data-id=${email.id}" value="check"/>
+                                                <label th:attr="for='email'+${itemStat1.count}"></label>
                                             </div>
                                         </td>
                                         <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star-o"></i></td>
-                                        <td class="max-texts" > <span class="label label-info m-r-10" th:if="${Articl.isGood =='1'}" >精品</span> <a th:href="'/bbs/article/0/?id='+${Articl.id}" th:text="${Articl.title}" ></a></td>
-                                        <td class="hidden-xs-down" th:text="${Articl.accountName}"></td>
-                                        <td class="text-right publishtime" th:text="${Articl.publishTime}">  </td>
+                                        <td class="max-texts" style="width:40px"> <span class="label label-info m-r-10" th:if="${email.isRead =='0'}" >未读</span> </td>
+                                        <td class="max-texts" > <span class="label label-info m-r-10" th:if="${email.isGuanfangEmail =='1'}" >官方邮件</span> <a th:href="'/email/emaildetal/?id='+${email.id}" th:text="${email.title}" ></a></td>
+                                        <td class="hidden-xs-down" th:text="${email.fromEmail}"></td>
+                                        <td class="text-right publishtime" th:text="${email.sendTime}">  </td>
                                     </tr>
                                      
                                  </tbody>
                             </table>
-                            
                         </div>
                           <div id="pagination3"></div>
                     </div>
-                  
+                                    
+                                    
+                                    
+                                    
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                
+               
+        
             <!-- ============================================================== -->
             <!-- End Container fluid  -->
             <!-- ============================================================== -->
@@ -467,7 +390,14 @@
 	<script src="/js/cropper.min.js"></script>
 	<script src="/commanjs/account.js"></script>
     <script src="/commanjs/util.js"></script>
-    <script src="/assets/plugins/select2/dist/js/select2.full.min.js" type="text/javascript"></script>
+    <script src="/assets/plugins/summernote/dist/summernote.min.js"></script>
+    <style>
+    	.input-group-addon{
+    		    background-color: #e18e17 !important;
+    	}
+    </style>
+    
+    
 <script type="text/javascript">
 	/* <![CDATA[ */
 Date.prototype.format = function(format)
@@ -490,9 +420,9 @@ Date.prototype.format = function(format)
  return format;
 }
 $(function(){
+	var id =$("#articleid").val();
 	var count = $('#countpage').attr('count');
 	var curpage = $('#curpage').attr('curpage')*1+1;
-	var pathurl = $("#pathurl").val();
 	$("#pagination3").pagination({
 		currentPage: curpage,
 		totalPage: count,
@@ -503,28 +433,15 @@ $(function(){
 		prevPageText: "上一页",
 		nextPageText: "下一页",
 		callback: function(current) {
-			window.location.href = pathurl+(current*1-1);
+			window.location.href = "/bbs/article/"+(current*1-1)+"/?id="+id;
 		}
 	});
 	$(".publishtime").each(function(){
 		$(this).text(new Date($(this).text()*1).format('yyyy-MM-dd hh:mm'));
 	});
-	$("#pagination3 > div > input[type='text']").css("height","29px")
+	$("#pagination3 > div > input[type='text']").css("height","29px");
 	
-	$("#city").on("change",function(){
-	 	window.location.href="/bbs/city/"+$(this).val()+"/0";
-	})
 });
-
-jQuery(document).ready(function() {
-	 $(".select2").select2();
-	 
-	 
-});
-
-
-
-
 
     /*]]> */
 </script>

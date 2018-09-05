@@ -14,7 +14,6 @@ public class Article {
 	private String accountId;
 	
 	//作者的名字
-	
 	private String accountName;
 	
 	//文章标题
@@ -38,17 +37,22 @@ public class Article {
 	//文章是否公开 0是没有公开,1是公开
 	private String isPublic; 
 	
-	//读取文章需要的星辰币
+	//价格,售卖的价格
 	private int price;
+	
+	//是否付费,0免费,1付费
+	private String isCost;
 	
 
 	//是否置顶  0是没有置顶,1是置顶
 	private String isStick;
-	
+	//帖子是否是精品,0不精品,1是精品
 	private String isGood;
-	
+	//城市
 	private String city;
-
+	//付费内容
+	private String costContext;
+	
 	public String getId() {
 		return id;
 	}
@@ -159,6 +163,22 @@ public class Article {
 
 	public void setCity(String city) {
 		this.city = city;
+	}
+
+	public String getIsCost() {
+		return isCost;
+	}
+
+	public void setIsCost(String isCost) {
+		this.isCost = isCost;
+	}
+
+	public String getCostContext() {
+		return costContext;
+	}
+
+	public void setCostContext(String costContext) {
+		this.costContext = costContext;
 	}
 	
 	

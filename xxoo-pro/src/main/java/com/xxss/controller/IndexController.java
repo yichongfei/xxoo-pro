@@ -143,7 +143,7 @@ public class IndexController {
 		HttpSession session = request.getSession();
 		Account account = (Account) session.getAttribute("account");
 		if(account.getEmail()=="游客") {
-			return "index";
+			return "login";
 		}
 		
 		
