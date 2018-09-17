@@ -34,6 +34,7 @@
 
 	<input type="text" id="accountid" style="display: none" th:value="${session.account.id}" />
 	<input type="text" id="accountName" style="display: none" th:value="${session.account.name}" />
+	<input type="text" id="privilege" style="display: none" th:value="${session.account.privilege}" />
 
     <!-- ============================================================== -->
     <!-- Preloader - style you can find in spinners.css -->
@@ -315,20 +316,20 @@
                                 <option value="杭州">杭州</option>
                                 <option value="济南">济南</option>
                             </select>
-                            <select name="select" id="isCost" required="" class="custom-select col-12" aria-invalid="false" style="margin-top: 10px " > 
+                           <!--  <select name="select" id="isCost" required="" class="custom-select col-12" aria-invalid="false" style="margin-top: 10px " > 
                                 <option value="0" selected="selected">请选择是否收费,如不选择,默认免费</option>
                                 <option value="1">收费</option>
                                 <option value="0">免费</option>
-                            </select>
-                            <div class="form-group" id="costDiv" style="display: none;margin-top: 10px"  >
+                            </select> -->
+                            <!-- <div class="form-group" id="costDiv" style="display: none;margin-top: 10px"  >
 							 <input id="price" placeholder="收费价格,最小为1星辰币,最大为20000星辰币"
 								type="text"  name="tch1"
 								data-bts-button-down-class="btn btn-secondary btn-outline"
 								data-bts-button-up-class="btn btn-secondary btn-outline"/>
-							</div>
-                              <div class="form-group" id="costContextDiv" style="display: none" >
+							</div> -->
+                              <!-- <div class="form-group" id="costContextDiv" style="display: none" >
 							<input id="costContext" type="text"  class="form-control" placeholder="收费内容请在这填写,例如联系方式"/>
-							</div>
+							</div> -->
                             <input type="text" id="title" class="form-control" placeholder="请您输入标题~这是必填的哦!" style="margin-top: 10px;margin-bottom: 10px;"/>
                              <script type="text/javascript">
                                 	$("#category").on("change",function(){
@@ -438,6 +439,15 @@
 		
 		//第一个富文本框的的发布内容
 		function publishFrom1(){
+			
+			var privilege = $("#privilege").val();
+			if(privilege=="0"){
+				alert("目前仅支持管理员发帖,防止灌水")
+				return
+			}
+			
+			
+			
 			var context =  $('#summernote1').summernote('code')
 			var category = $("#category").val()
 			var accountid = $("#accountid").val()
@@ -483,6 +493,13 @@
 			alert("文章正在发表当中,请您等候片刻,图片以及文字,视频需要处理,请等待30秒左右");
 		}
 		function publishFrom2(){
+
+			var privilege = $("#privilege").val();
+			if(privilege=="0"){
+				alert("目前仅支持管理员发帖,防止灌水")
+				return
+			}
+			
 			var context =  $('#summernote2').summernote('code')
 			var category = $("#category").val()
 			var accountid = $("#accountid").val()

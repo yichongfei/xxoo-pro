@@ -248,8 +248,8 @@
                                 <li><a href="/information">个人信息</a></li>
 								<li><a href="/information">账户余额</a></li>
 								<li><a href="/information">个人资产STAR</a></li>
-								<li><a href="/chongzhi">充值</a></li>
-								<li><a href="http://www.luoboka.com/links/F787442B794187A9">购卡</a></li>
+								<li><a href="/information">充值</a></li>
+								<li><a href="http://www.luoboka.com/category/D28907B042DC38F3">购卡</a></li>
                             </ul>
                         </li>
                         
@@ -300,16 +300,55 @@
                                 <h3 class="m-b-0" th:text="${session.account.name}"></h3>
                                 <p th:text="${session.account.description}"></p>
                                 <a href="javascript:void(0)" id="replaceImg" class="m-t-10 waves-effect waves-dark btn btn-info btn-md btn-rounded">点击更换头像</a>
-                                <div class="row text-center m-t-20">
+                                 <div class="row text-center m-t-20">
                                     <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">1099</h3><small>Articles</small></div>
+                                        <h3 class="m-b-0 font-light">星辰会所</h3><small></small></div>
                                     <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">23,469</h3><small>Followers</small></div>
+                                        <h3 class="m-b-0 font-light">谢谢您的光临</h3><small></small></div>
                                     <div class="col-lg-4 col-md-4 m-t-20">
-                                        <h3 class="m-b-0 font-light">6035</h3><small>Following</small></div>
+                                        <h3 class="m-b-0 font-light">欢迎回来,这里永远是家</h3><small></small></div>
                                     <div class="col-md-12 m-b-10"></div>
-                                </div>
+                                </div> 
                             </div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Column -->
+                        <div class="card"> 
+                            <div class="card-body little-profile text-center">
+                            <h1>这里是普通会员充值,普通会员享有无限观影体验,如果您购买的超级会员,请不要在这里充值!</h1>
+								<div class="form-group">
+									<label class="control-label ">请注意!这里是普通会员充值!您的账号</label> 
+									<input	type="text" id="accountChongzhi" class="form-control" th:value="${session.account.email}"  disabled="disabled"	/> 
+									<label class="control-label ">填写您的购买的充值卡账号</label> 
+									<input	type="text" id="accountCard" class="form-control"  /> 
+									<label class="control-label ">填写您的购买的充值卡密码</label> 
+									<input	type="text" id="accountCardPassword" class="form-control" /> 
+									<button type="button" class="btn waves-effect waves-light btn-block btn-success" style="margin-top: 10px" onclick="chongzhi_account()">充值</button>
+									<a href="http://www.luoboka.com/category/D28907B042DC38F3" target="blank"><button  style="margin-top: 10px" type="button" class="btn waves-effect waves-light btn-block btn-info">购买点卡</button></a>
+								</div>
+							</div>
+                        </div>
+                        <!-- Column -->
+                    </div>
+                    <div class="col-lg-4">
+                        <!-- Column -->
+                        <div class="card"> 
+                            <div class="card-body little-profile text-center">
+                            <h1>这里是超级会员充值,超级会员终生无限观看视频,并且享有星辰模特经纪人服务,不需押金,直接约炮</h1>
+								<div class="form-group">
+									<label class="control-label ">请注意!这里是普通会员充值!您的账号</label> 
+									<input	type="text" id="superaccountChongzhi" class="form-control" th:value="${session.account.email}"  disabled="disabled"	/> 
+									<label class="control-label ">填写您的购买的充值卡账号</label> 
+									<input	type="text" id="superaccountCard" class="form-control"  /> 
+									<label class="control-label ">填写您的购买的充值卡密码</label> 
+									<input	type="text" id="superaccountCardPassword" class="form-control" /> 
+									<button type="button" class="btn waves-effect waves-light btn-block btn-success" style="margin-top: 10px" onclick="chongzhi_account_super()">充值</button>
+									<a href="http://www.luoboka.com/product/E9174727E74800D3" target="blank"><button  style="margin-top: 10px" type="button" class="btn waves-effect waves-light btn-block btn-info">购买点卡</button></a>
+									
+								</div>
+							</div>
                         </div>
                         <!-- Column -->
                     </div>
@@ -350,9 +389,9 @@
                                         <div class="row">
                                             <div class="col-md-6">
                                                 <div class="form-group row">
-                                                    <label class="control-label text-right col-md-3">星辰币</label>
+                                                    <label class="control-label text-right col-md-3">星辰超级会员</label>
                                                     <div class="col-md-9">
-                                                        <p class="form-control-static" th:text="${session.account.money}">  </p>
+                                                        <p class="form-control-static" th:text="${session.account.superaccount}">  </p>
                                                     </div>
                                                 </div>
                                             </div>
@@ -751,6 +790,48 @@
 	window.onload = function(){
 		$("#question").click();
 	}
+	
+	function chongzhi_account(){
+		var email = $("#accountChongzhi").val()
+		var key = $("#accountCard").val()
+		var secret =$("#accountCardPassword").val()
+		
+		if(email ==''||email==null ||key ==''||key ==null || secret ==''||secret==null){
+			alert("请填写完整的信息,确认您已登录")
+			return;
+			
+		}else{
+			$.ajax({
+				url:"/account/chongzhivip",
+				data:{"email":email,"key":key,"secret":secret},
+				success:function(data){
+					alert(data.information)
+				}
+			})
+		}
+		
+	}
+	function chongzhi_account_super(){
+		var email = $("#superaccountChongzhi").val()
+		var key = $("#superaccountCard").val()
+		var secret =$("#superaccountCardPassword").val()
+		
+		if(email ==''||email==null ||key ==''||key ==null || secret ==''||secret==null){
+			alert("请填写完整的信息,确认您已登录")
+			return;
+			
+		}else{
+			$.ajax({
+				url:"/account/chongzhisupervip",
+				data:{"email":email,"key":key,"secret":secret},
+				success:function(data){
+					alert(data.information)
+				}
+			})
+		}
+	}
+	
+	
 		　　
     /*]]> */
 </script>

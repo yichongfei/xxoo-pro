@@ -60,15 +60,15 @@ public class SpringContext implements ApplicationContextAware {
 		  AmazonS3Object S3 = new AmazonS3Object();
 		  
 		
-	      S3.saveVideo2DB(VideoService,"2018-08-14-02");
+	      S3.saveVideo2DB(VideoService,"2018-09-15");
 		
 	      
 		 
 		
 		
 		
-//		生成card 存入数据库，并写入文件当中		
-//		List<Card> list = CardUtil.createCard(1);
+		//生成card 存入数据库，并写入文件当中		
+//		List<Card> list = CardUtil.createCard(240);
 //
 //		ApplicationContext ctx = SpringApplication.run(Application.class, args);
 //
@@ -76,7 +76,7 @@ public class SpringContext implements ApplicationContextAware {
 //
 //		CardService.save(list);
 //
-//		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("E:\\card1.txt")));
+//		BufferedWriter bw = new BufferedWriter(new OutputStreamWriter(new FileOutputStream("E:\\card244.txt")));
 //
 //		for (Card card : list) {
 //			bw.write(card.getKey() + "  ");

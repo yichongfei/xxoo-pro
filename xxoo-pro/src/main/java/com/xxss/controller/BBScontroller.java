@@ -227,7 +227,9 @@ public class BBScontroller {
 		article.setTitle(title);
 		article.setIsStick("0");
 		article.setIsCost(isCost);
-		article.setPrice(Integer.valueOf(price));
+		if(!price.equals("")) {
+			article.setPrice(Integer.valueOf(price));
+		}
 		article.setCostContext(costContext);
 		articleservice.save(article);
 	}

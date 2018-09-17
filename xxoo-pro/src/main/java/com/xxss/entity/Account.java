@@ -42,7 +42,7 @@ public class Account {
 	
 	private long registerTime;
 	
-	
+	private String superaccount;//超级会员
 	
 	public Account() {
 		
@@ -232,6 +232,14 @@ public class Account {
 
 	public void setRegisterTime(long registerTime) {
 		this.registerTime = registerTime;
+	}
+
+	public String getSuperaccount() {
+		return superaccount;
+	}
+
+	public void setSuperaccount(String superaccount) {
+		this.superaccount = superaccount;
 	}
 
 	
