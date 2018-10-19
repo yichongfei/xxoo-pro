@@ -409,7 +409,28 @@
 				height : 350, // set editor height
 				minHeight : null, // set minimum height of editor
 				maxHeight : null, // set maximum height of editor
-				focus : false
+				focus : false,
+				callbacks:{
+		                onImageUpload: function (files) {
+		                    //上传图片到服务器
+		                    var formData = new FormData();
+		                    formData.append('file',files[0]);
+		                    $.ajax({
+		                        url : '/bbs/uploadImg',//后台文件上传接口
+		                        type : 'POST',
+		                        data : formData,
+		                        processData : false,
+		                        contentType : false,
+		                        success : function(path) {
+		                        	console.log(path)
+		                            $('#summernote1').summernote('insertImage',path);
+		                        },
+		                        error:function(){
+		                            alert("上传失败");
+		                        }
+		                    });
+		                }
+				}
 			// set focus to editable area after initializing summernote
 			});
 
@@ -439,13 +460,11 @@
 		
 		//第一个富文本框的的发布内容
 		function publishFrom1(){
-			
 			var privilege = $("#privilege").val();
 			if(privilege=="0"){
 				alert("目前仅支持管理员发帖,防止灌水")
 				return
 			}
-			
 			
 			
 			var context =  $('#summernote1').summernote('code')
