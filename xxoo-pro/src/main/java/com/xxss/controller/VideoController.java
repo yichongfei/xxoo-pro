@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.xxss.aws.cloudfront.CloudFront;
 import com.xxss.aws.s3.AmazonS3Object;
 import com.xxss.config.S3Config;
 import com.xxss.dao.AccountService;
@@ -61,7 +62,7 @@ public class VideoController {
 		Account account = (Account) session.getAttribute("account");
 		Result result = new Result();
 		Video video = videoService.findById(id);
-		String preSignedURL = AmazonS3Object.getPreSignedURL(S3Config.VIDEOBUCKET, video.getMp4Key());
+		String preSignedURL = CloudFront.getPreUrl(video.getMp4Key());
 		video.setPreUrl(preSignedURL);
 		//会员观看不限制次数
 		if (account != null && account.getVipDeadline() > System.currentTimeMillis()) {

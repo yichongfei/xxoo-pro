@@ -380,24 +380,12 @@
                             <table class="table table-hover no-wrap">
                                 <tbody>
                                     <tr class="unread" th:each="stickArticl,itemStat: ${stickList}">
-                                        <td style="width:40px">
-                                            <div class="checkbox">
-                                                <input type="checkbox" th:id="${itemStat.count}" th:attr="data-id=${stickArticl.id}" value="check"/>
-                                                <label th:attr="for=${itemStat.count}"></label>
-                                            </div>
-                                        </td>
                                         <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star text-warning"></i></td>
                                         <td class="max-texts" > <span class="label label-warning" >置顶</span> <a  th:href="'/bbs/article/0/?id='+${stickArticl.id}"  th:text="${stickArticl.title}" ></a></td>
                                         <td class="hidden-xs-down" th:text="${stickArticl.accountName}"></td>
                                         <td class="text-right publishtime" th:text="${stickArticl.publishTime}"> </td>
                                     </tr>
                                     <tr class="unread" th:each="Articl,itemStat1: ${articleList}">
-                                        <td style="width:40px">
-                                            <div class="checkbox">
-                                                <input type="checkbox" th:id="'articl'+${itemStat1.count}" th:attr="data-id=${Articl.id}" value="check"/>
-                                                <label th:attr="for='articl'+${itemStat1.count}"></label>
-                                            </div>
-                                        </td>
                                         <td style="width:40px" class="hidden-xs-down"><i class="fa fa-star-o"></i></td>
                                         <td class="max-texts" > <span class="label label-info m-r-10" th:if="${Articl.isGood =='1'}" >精品</span> <a th:href="'/bbs/article/0/?id='+${Articl.id}" th:text="${Articl.title}" ></a></td>
                                         <td class="hidden-xs-down" th:text="${Articl.accountName}"></td>

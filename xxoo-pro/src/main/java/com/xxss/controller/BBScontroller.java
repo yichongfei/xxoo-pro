@@ -234,7 +234,7 @@ public class BBScontroller {
 			out = new BufferedOutputStream(new FileOutputStream(img));
 			out.write(file.getBytes());
 			out.flush();
-			String keyname = AmazonS3Object.uploadFile1( img,"talent-xinjiapo",
+			String keyname = AmazonS3Object.uploadFile1( img,S3Config.VIDEOBUCKET,
 					BBSconfig.S3BBSPHOTO_PATH);
 			keyname = AccountConfig.S3PATH + keyname;
 			return keyname;

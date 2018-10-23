@@ -399,7 +399,7 @@ $(function(){
 						<div class="col-md-2 resent-grid recommended-grid slider-top-grids" th:each="video: ${videos}"  >
 							<a class="goVideoPlay" href="javascript:void(0);" onclick="goVideoPlay(this)" th:attr="data-id=${video.id}">
 								<div class="resent-grid-poster-img recommended-grid-img" >
-									<img alt="" th:src=" @{https://talent-xinjiapo.s3.amazonaws.com/{imgkey}(imgkey=${video.picKey})}"/>
+									<img alt="" th:src=" @{https://talent-elg.s3.amazonaws.com/{imgkey}(imgkey=${video.picKey})}"/>
 								</div>
 							</a>
 							<div class="resent-grid-info recommended-grid-info">
