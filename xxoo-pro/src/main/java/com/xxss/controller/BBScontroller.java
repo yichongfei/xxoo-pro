@@ -82,7 +82,7 @@ public class BBScontroller {
 	@RequestMapping("/bbs/{page}")
 	public String bbs(@PathVariable(value = "page") Integer page, Model model) {
 		if (stickList.size() == 0) {
-			stickList = articleservice.findByisStickLike("1");
+			stickList = articleservice.findByisStick("1");
 		}
 		Sort sort = new Sort(Direction.DESC, "publishTime");
 		Pageable pageable = new PageRequest(page, 10, sort);
@@ -109,7 +109,7 @@ public class BBScontroller {
 	@RequestMapping("/bbs/good/{page}")
 	public String bbsByGood(@PathVariable(value = "page") Integer page, Model model) {
 		if (stickList.size() == 0) {
-			stickList = articleservice.findByisStickLike("1");
+			stickList = articleservice.findByisStick("1");
 		}
 		Sort sort = new Sort(Direction.DESC, "publishTime");
 		Pageable pageable = new PageRequest(page, 10, sort);
@@ -164,7 +164,7 @@ public class BBScontroller {
 	public String goCityCategory(@PathVariable(value = "city") String city, @PathVariable(value = "page") Integer page,
 			Model model) {
 		if (stickList.size() == 0) {
-			stickList = articleservice.findByisStickLike("1");
+			stickList = articleservice.findByisStick("1");
 		}
 		Sort sort = new Sort(Direction.DESC, "publishTime");
 		Pageable pageable = new PageRequest(page, 10, sort);

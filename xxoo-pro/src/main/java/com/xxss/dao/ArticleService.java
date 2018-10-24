@@ -11,7 +11,7 @@ import com.xxss.entity.Article;
 public interface ArticleService  extends JpaRepository<Article, String>{
 	Article findByid(String id);
 	
-	List<Article> findByisStickLike(String isStick);
+	List<Article> findByisStick(String isStick);
 	
 	Page<Article> findByisStickLike(String isStick,Pageable pageable);
 	
