@@ -79,7 +79,7 @@ public class VideoController {
 		if (playTimes.containsKey(addr)) {
 			if (playTimes.get(addr) > S3Config.playTimesForFree) {
 				result.setSuccess(false);
-				result.setInformation("非会员每天只能播放5个视频,如果想观看更多视频,请成为我们星辰吧的会员,谢谢您的支持");
+				result.setInformation("非会员每天只能播放"+S3Config.playTimesForFree+"个视频,会员可无限观看,请成为我们星辰吧的会员,谢谢您的支持");
 				return result;
 			}
 
