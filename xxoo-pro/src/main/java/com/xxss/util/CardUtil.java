@@ -22,7 +22,7 @@ public class CardUtil {
 	
 	public static final int times = 200;
 	
-	public static List<Card> createCard(int months) { 
+	public static List<Card> createCard(double months) { 
 		List<Card> list = new ArrayList<Card>();
 		String str = "";
 		int counts = 0;

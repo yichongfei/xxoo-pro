@@ -17,7 +17,7 @@ public class Card {
 	
 	private String secret;
 	
-	private int months;
+	private double months;
 	
 	private boolean isAvailable;
 
@@ -45,11 +45,11 @@ public class Card {
 		this.secret = secret;
 	}
 
-	public int getMonths() {
+	public double getMonths() {
 		return months;
 	}
 
-	public void setMonths(int months) {
+	public void setMonths(double months) {
 		this.months = months;
 	}
 
