@@ -141,7 +141,15 @@ public class VideoController {
 		todayEnd.set(Calendar.MILLISECOND, 999);
 		return todayEnd.getTimeInMillis();
 	}
-	
+	@RequestMapping("/video/updataPlayTimes")
+	@ResponseBody
+	public void updataPlayTimes(String id) {
+		Video video = videoService.findById(id);
+		if(video !=null) {
+			video.updateIncreasePlayTimes();
+			videoService.saveAndFlush(video);
+		}
+	}
 	
 	
 }

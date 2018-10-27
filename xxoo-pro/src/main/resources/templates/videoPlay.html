@@ -9,24 +9,44 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 <script type="application/x-javascript"> addEventListener("load", function() { setTimeout(hideURLbar, 0); }, false); function hideURLbar(){ window.scrollTo(0,1); } </script>
 <link href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet"/>
 <script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<script src="../ckplayer/ckplayer/ckplayer.js" charset="UTF-8"></script>
 <link href="/css/dashboard.css" rel="stylesheet"/>
 <link href="/css/style.css" rel='stylesheet' type='text/css' media="all" />
 <script type="text/javascript">
 	/* <![CDATA[ */
 	var url = window.location.href;
 	var id = url.split("id=")[1];
-	
+	$(document).ready(function() {
+		$("img").addClass("img-rounded");
+		$.ajax({
+			url : "/video/updataPlayTimes",
+			data : {
+				"id" : id
+			},
+			type : "get",
+			success : function() {
+			}
+		});
+
+	});
 	$.ajax({
 		url : "/video/getVideo",
 		data : {
 			"id" : id
 		},
 		success : function(data) {
+			debugger;
 			if(data.success==false){
 				alert(data.information);
 				return
 			}else{
-				$("#my-video").attr("src", data.object.preUrl)
+				var videoObject = {
+						container: '#my-video',//“#”代表容器的ID，“.”或“”代表容器的class
+						variable: 'player',//该属性必需设置，值等于下面的new chplayer()的对象
+						flashplayer:false,//如果强制使用flashplayer则设置成true
+						video:data.object.preUrl//视频地址
+					};
+				var player=new ckplayer(videoObject);
 				$("#title").text(data.title);
 			}
 			
@@ -345,11 +365,8 @@ Smartphone Compatible web template, free webdesigns for Nokia, Samsung, LG, Sony
 						<div class="song-info">
 							<a href="/bbs/0"><h3 style="color: #e70a0a">全国一二线城市 省会提供模特，网红，女主播，空姐，护士，白领，秘书，人妻，00后，技师，潮喷，重口，SM，学生，少妇，人妻，兼职。价格合理,点击即可查看,全国可约</h3></a>	
 					</div>
-						<div class="video-grid">
-							<link href="https://vjs.zencdn.net/7.0.5/video-js.css" rel="stylesheet"></link>
-							<video controls="controls" id="my-video" class="video-js" src=""
-							width="98%"  data-setup="{}"></video>
-						</div>
+						<div controls="controls" id="my-video" class="video-js video-height" src=""
+							width="90%"  data-setup="{}"></div>
 					</div>
 					<div class="clearfix"> </div>
 					<div class="published">
