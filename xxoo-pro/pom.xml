@@ -5,7 +5,7 @@
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>org.xxss</groupId>
-	<artifactId>xxss-pro</artifactId>
+	<artifactId>star-pro</artifactId>
 	<version>1.0.0-RELEASE</version>
 	<packaging>jar</packaging>
 
@@ -93,14 +93,24 @@
 	</dependencies>
 
 
-	<!-- <build>
+	 <build>
 		<plugins>
 			<plugin>
-				<groupId>org.springframework.boot</groupId>
-				<artifactId>spring-boot-maven-plugin</artifactId>
+			    <groupId>org.springframework.boot</groupId>
+			    <artifactId>spring-boot-maven-plugin</artifactId>
+			    <version>1.5.3.RELEASE</version>
+			    <configuration>
+			        <mainClass>com.xxss.Application</mainClass>
+			    </configuration>
+			    <executions>
+			        <execution>
+			            <goals>
+			                <goal>repackage</goal>
+			            </goals>
+			        </execution>
+			    </executions>
 			</plugin>
 		</plugins>
 	</build>
- -->
 
 </project>
