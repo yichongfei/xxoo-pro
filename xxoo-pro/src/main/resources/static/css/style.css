@@ -2703,6 +2703,7 @@ span.glyphicon.glyphicon-user {
 		padding: 10em 0 7em 0;
 	}
 	.footer {
+		height: 1500px !important;
 		padding: 2em 0;
 	}
 	.footer-grids {
