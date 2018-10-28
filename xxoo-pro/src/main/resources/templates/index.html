@@ -26,308 +26,21 @@
 
 </head>
   <body>
-    <nav class="navbar navbar-inverse navbar-fixed-top">
-      <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">点击展开导航</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          
-        </div>
-        <div id="navbar" class="navbar-collapse collapse">
-			<div class="header-top-right">
-				<div class="signin" id="main-signup-button">
-					<a href="javascript:void(0)" onclick="window.location.href='/bbs/0'" class="play-icon popup-with-zoom-anim">星辰约炮</a>
-					<a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a>
-					<!-- pop-up-box -->
-									<script type="text/javascript" src="/js/modernizr.custom.min.js"></script>    
-									<link href="/css/popuo-box.css" rel="stylesheet" type="text/css" media="all" />
-									<script src="/js/jquery.magnific-popup.js" type="text/javascript"></script>
-									<!--//pop-up-box -->
-									<div id="small-dialog2" class="mfp-hide">
-										<h3>创建账号</h3> 
-										<div class="social-sits">
-											<div class="facebook-button">
-												<a href="#">欢迎来到星辰吧</a>
-											</div>
-											<div class="chrome-button">
-												<a href="#">我们的征途是星辰大海</a>
-											</div>
-											<div class="button-bottom">
-												<p>如果您已经是我们的星辰吧会员 <a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a></p>
-											</div>
-										</div>
-										<div class="signup">
-											<p style="font-size: 14px;">此社區只適合十八歲或以上人士觀看。內容可能令人反感；不可將此論壇的內容派發、傳閱、出售、出租、交給或借予年齡未滿18歲的人士或將本網站內容向該人士出示、播放或放映。</p>
-											<p style="font-size: 14px;">致中國大陸用戶:本社區上發布的資源與信息, 與中國大陸相關法律抵觸, 在您瀏覽本網站時, 請自覺遵守當地法律</p>
-											<div class="continue-button">
-												<a href="#small-dialog3" class="hvr-shutter-out-horizontal play-icon popup-with-zoom-anim">继续</a>
-											</div>
-										</div>
-										<div class="clearfix"> </div>
-									</div>	
-									<div id="small-dialog3" class="mfp-hide">
-										<h3>创建账号</h3> 
-										<div class="social-sits">
-											<div class="facebook-button">
-												<a href="#">欢迎来到星辰吧</a>
-											</div>
-											<div class="chrome-button">
-												<a href="#">我们的征途是星辰大海</a>
-											</div>
-											<div class="button-bottom">
-												<p>已经是星辰吧的会员 <a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a></p>
-											</div>
-										</div>
-										<div class="signup">
-											<form>
-												<input type="text" class="email" id="email" placeholder="请输入您的邮箱" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
-												<input type="password" id="password" placeholder="请输入您的密码" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-												<input type="button" value="注册" id="signup" onclick ="register()" />
-											</form>
-										</div>
-										<div class="clearfix"> </div>
-									</div>	
-									<div id="small-dialog7" class="mfp-hide">
-										<h3>创建账号</h3> 
-										<div class="social-sits">
-											<div class="facebook-button">
-												<a href="#">欢迎来到星辰吧</a>
-											</div>
-											<div class="chrome-button">
-												<a href="#">我们的征途是星辰大海</a>
-											</div>
-											<div class="button-bottom">
-												<p>Already have an account? <a href="#small-dialog" class="play-icon popup-with-zoom-anim">Login</a></p>
-											</div>
-										</div>
-										<div class="signup">
-											<form action="upload.html">
-												<input type="text" class="email" placeholder="Email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?" title="Enter a valid email"/>
-												<input type="password" placeholder="Password" required="required" pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-												<input type="button"  value="Sign In"/>
-											</form>
-										</div>
-										<div class="clearfix"> </div>
-									</div>		
-									<div id="small-dialog4" class="mfp-hide">
-										<h3>Feedback</h3> 
-										<div class="feedback-grids">
-											<div class="feedback-grid">
-												<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-											</div>
-											<div class="button-bottom">
-												<p><a href="#small-dialog" class="play-icon popup-with-zoom-anim">Sign in</a> to get started.</p>
-											</div>
-										</div>
-									</div>
-									<div id="small-dialog5" class="mfp-hide">
-										<h3>Help</h3> 
-											<div class="help-grid">
-												<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-											</div>
-											<div class="help-grids">
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog4" class="play-icon popup-with-zoom-anim">Feedback</a></p>
-												</div>
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Lorem ipsum dolor sit amet</a></p>
-												</div>
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Nunc vitae rutrum enim</a></p>
-												</div>
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris at volutpat leo</a></p>
-												</div>
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Mauris vehicula rutrum velit</a></p>
-												</div>
-												<div class="help-button-bottom">
-													<p><a href="#small-dialog6" class="play-icon popup-with-zoom-anim">Aliquam eget ante non orci fac</a></p>
-												</div>
-											</div>
-									</div>
-									<div id="small-dialog6" class="mfp-hide">
-										<div class="video-information-text">
-											<h4>Video information  settings</h4>
-											<p>Suspendisse tristique magna ut urna pellentesque, ut egestas velit faucibus. Nullam mattis lectus ullamcorper dui dignissim, sit amet egestas orci ullamcorper.</p>
-											<ol>
-												<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-												<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-												<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-												<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-												<li>Nunc vitae rutrum enim. Mauris at volutpat leo. Vivamus dapibus mi ut elit fermentum tincidunt.</li>
-											</ol>
-										</div>
-									</div>
-									<script>
-											$(document).ready(function() {
-											$('.popup-with-zoom-anim').magnificPopup({
-												type: 'inline',
-												fixedContentPos: false,
-												fixedBgPos: true,
-												overflowY: 'auto',
-												closeBtnInside: true,
-												preloader: false,
-												midClick: true,
-												removalDelay: 300,
-												mainClass: 'my-mfp-zoom-in'
-											});
-																											
-											});
-									</script>	
-				</div>
-				<div class="signin" id="main-login-button">
-					<a href="#small-dialog" class="play-icon popup-with-zoom-anim">登录</a>
-					<div id="small-dialog" class="mfp-hide">
-						<h3>登录</h3>
-						<div class="social-sits">
-							<div class="facebook-button">
-								<a href="#">欢迎来到星辰吧</a>
-							</div>
-							<div class="chrome-button">
-								<a href="#">我们的征途是星辰大海</a>
-							</div>
-							<div class="button-bottom">
-								<p>还不是星辰吧的会员? <a href="#small-dialog2" class="play-icon popup-with-zoom-anim">注册</a></p>
-							</div>
-						</div>
-						<div class="signup">
-							<form>
-								<input type="text" class="email" placeholder="账号/邮箱" id="login-email" required="required" pattern="([\w-\.]+@([\w-]+\.)+[\w-]{2,4})?"/>
-								<input type="password" placeholder="密码" required="required" id="login-password"  pattern=".{6,}" title="Minimum 6 characters required" autocomplete="off" />
-								<input type="button"  value="登录" onclick = "login()"/>
-							</form>
-							<div class="forgot">
-								<a href="#">忘记密码 ?</a>
-							</div>
-						</div>
-						<div class="clearfix"> </div>
-					</div>
-				</div>
-				
-				
-				
-				<div id="account-information" class="signin" style="display: none" >
-					<a id="accountInformation" href="/information" th:text ="${session.account.email}" ></a>
-				</div>
-				
-				<div id="exit" class="signin"  style="display: none">
-					<a href="javascript:void(0)" class="play-icon popup-with-zoom-anim" onclick="exit()">退出</a>
-				</div>
-				
-				<div class="clearfix"> </div>
-			</div>
-        </div>
-		<div class="clearfix"> </div>
-      </div>
-    </nav>
-	<div class="copyrights"></div>
-        <div class="col-sm-3 col-md-2 sidebar">
-			<div class="top-navigation">
-				<div class="t-menu">导航,点击展开</div>
-				<div class="t-img">
-					<img src="images/lines.png" alt="" />
-				</div>
-				<div class="clearfix"> </div>
-			</div>
-				<div class="drop-navigation drop-navigation">
-				  <ul class="nav nav-sidebar">
-					<li class="active"><a href="/" class="home-icon"><span class="glyphicon glyphicon-home" aria-hidden="true"></span>星辰吧主页</a></li>
-					<li><a href="/bbs/0" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>Sex星辰约炮,星辰嫖娼,全世界的性息</a></li>
-					<li><a href="/listNewVideo/0" class="user-icon"><span class="glyphicon glyphicon-home glyphicon-blackboard" aria-hidden="true"></span>最新视频</a></li>
-					<li><a href="/listHotVideo/0" class="sub-icon"><span class="glyphicon glyphicon-home glyphicon-hourglass" aria-hidden="true"></span>最多播放</a></li>
-					<li><a  class="menu1"><span class="glyphicon glyphicon-film" aria-hidden="true"></span>视频分类<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-						<ul class="cl-effect-2">
-							<li><a href="/listVideo/china/0">国产</a></li>                                             
-							<li><a href="/listVideo/china-better/0">国产精品</a></li>
-							<li><a href="/listVideo/america/0">欧美</a></li> 
-							<li><a href="/listVideo/dongman/0">动漫</a></li> 
-							<li><a href="/listVideo/qunjiao/0">群交</a></li> 
-							<li><a href="/listVideo/gangjiao/0">肛交</a></li> 
-							<li><a href="/listVideo/yanshe/0">颜射</a></li> 
-							<li><a href="/listVideo/japan/0">日本</a></li>
-							<li><a href="/listVideo/pornhub-asia/0">亚洲自拍</a></li> 
-							<li><a href="/listVideo/mote/0">模特</a></li> 
-							<li><a href="/listVideo/nenmo/0">嫩模</a></li> 
-						</ul>
-						<!-- script-for-menu -->
-						<script>
-							$( "li a.menu1" ).click(function() {
-							$( "ul.cl-effect-2" ).slideToggle( 300, function() {
-							// Animation complete.
-							});
-							});
-						</script>
-					
-					<li><a  class="menu2"><span class="glyphicon glyphicon-film glyphicon-king" aria-hidden="true"></span>日本女优<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-						<ul class="cl-effect-1">
-							<li><a href="/listVideo/AmeriIchinose/0">AmeriIchinose</a></li>
-							<li><a href="/listVideo/cangjingkong/0">苍井空</a></li>
-							<li><a href="/listVideo/boduoyejieyi/0">波多野结衣</a></li>
-							<li><a href="/listVideo/taoguhuilixiang/0">桃谷绘里香</a></li>
-						</ul>
-						<!-- script-for-menu -->
-						<script>
-							$( "li a.menu2" ).click(function() {
-							$( "ul.cl-effect-1" ).slideToggle( 300, function() {
-							// Animation complete.
-							});
-							});
-						</script>
-					<li><a class="menu4"><span class="glyphicon glyphicon-star" aria-hidden="true"></span>欧美女优<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-						<ul class="cl-effect-3">
-							<li><a href="/listVideo/anjelica/0">安吉莉卡</a></li>
-							<li><a href="/listVideo/belle knox/0">Belle knox</a></li>
-							<li><a href="/listVideo/LanaRHoades/0">LanaRHoades</a></li>
-							<li><a href="/listVideo/MiaKhalifa/0">MiaKhalifa</a></li>
-							<li><a href="/listVideo/RileyReid/0">RileyReid</a></li>
-							<li><a href="/listVideo/Mia Malkova/0">Mia Malkova</a></li>
-							<li><a href="/listVideo/Brandi Love/0">Brandi Love</a></li>
-							<li><a href="/listVideo/Adriana Chechik/0">Adriana Chechik</a></li>
-							<li><a href="/listVideo/Nicole Aniston/0">Nicole Aniston</a></li>
-							<li><a href="/listVideo/Lena Paul/0">Lena Paul</a></li>
-							<li><a href="/listVideo/Lisa Ann/0">Lisa Ann</a></li>
-							<li><a href="/listVideo/Alexis Texas/0">Alexis Texas</a></li>
-						</ul>
-						<!-- script-for-menu -->
-						<script>
-							$( "li a.menu4" ).click(function() {
-							$( "ul.cl-effect-3" ).slideToggle( 300, function() {
-							// Animation complete.
-							});
-							});
-						</script>
-					<li><a  class="menu3"><span class="glyphicon glyphicon-music"  aria-hidden="true"></span>个人信息<span class="glyphicon glyphicon-menu-down" aria-hidden="true"></span></a></li>
-					<ul class="cl-effect-4">
-						<li onclick ="information()"><a href="javascript:void(0)" >个人信息</a></li>
-						<li><a href="/information">账户余额</a></li>
-						<li><a href="/information">个人资产STAR</a></li>
-						<li><a href="/information">充值</a></li>
-						<li><a href="http://www.luoboka.com/category/D28907B042DC38F3">购卡</a></li>
-					</ul>
-					<script>
-							$( "li a.menu3" ).click(function() {
-							$( "ul.cl-effect-4" ).slideToggle( 300, function() {
-							// Animation complete.
-							});
-							});
-						</script>
-					<li><a href="/email/inbox/0" class="news-icon"><span class="glyphicon glyphicon-envelope" aria-hidden="true"></span>邮件</a></li>
-				  </ul>
-				  <!-- script-for-menu -->
-						<script>
-							$( ".top-navigation" ).click(function() {
-							$( ".drop-navigation" ).slideToggle( 300, function() {
-							// Animation complete.
-							});
-							});
-						</script>
-				</div>
-        </div>
+    	<!-- HEADER -->
+	   <nav id="header" class="navbar navbar-inverse navbar-fixed-top">
+	   		<script type="text/javascript">
+	   			$("#header").load("/headerss");
+	   		</script>
+	   </nav>
+	   
+
+
+   		<div id="leftdh" class="col-sm-3 col-md-2 sidebar">
+			<!--左侧导航 -->
+			<script type="text/javascript">
+				$("#leftdh").load("/leftdh");
+			</script>
+       	</div>
         <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 			<div class="main-grids">
 				<div class="top-grids">
@@ -419,102 +132,141 @@
 			</div>
 			<!-- footer -->
 			<div class="footer">
-			<a href="http://zhaoav.video" target="_blank" title="找AV导航"
-				rel="nofollow">找AV导航</a> <a href="http://www.mdrkj.com/xxfldh"
-				target="_blank" title="小X福利导航" rel="nofollow">小X福利导航</a> <a
-				href="http://www.laosegui.one" target="_blank" title="老色鬼福利导航"
-				rel="nofollow">老色鬼福利导航</a> <a href="https://www.mdrkj.com/136dh/"
-				target="_blank" title="136福利导航" rel="nofollow">136福利导航</a> <a
-				href="http://una123.com" target="_blank" title="123导航"
-				rel="nofollow">123导航</a> <a href="http://www.ifse.xyz"
-				target="_blank" title="爱妃色导航" rel="nofollow">爱妃色导航</a> <a
-				href="http://www.yinuuu.xyz/" target="_blank" title="银色导航 "
-				rel="nofollow">银色导航 </a> <a href="http://xuebdh.club"
-				target="_blank" title="雪B导航 " rel="nofollow">雪B导航 </a> <a
-				href="http://clski.com" target="_blank" title="苍狼导航" rel="nofollow">苍狼导航</a> <a href="http://byyyh.top/" target="_blank" title="秀色导航"
-				rel="nofollow">秀色导航</a> <a href="http://jzdh.in/" target="_blank"
-				title="九州导航" rel="nofollow">九州导航</a> <a
-				href="http://www.amen168.com" target="_blank" title="A门导航"
-				rel="nofollow">A门导航</a> <a href="http://www.mn1.club/"
-				target="_blank" title="媚娘福利导航" rel="nofollow">媚娘福利导航</a> <a
-				href="http://www.cxdh1.xyz" target="_blank" title="插穴福利导航"
-				rel="nofollow">插穴福利导航</a> <a href=" http://www.bjh.space"
-				target="_blank" title="爆菊花福利导航" rel="nofollow">爆菊花福利导航</a> <a
-				href="http://www.pstdh.xyz" target="_blank" title="品色堂導航"
-				rel="nofollow">品色堂導航</a> <a href="http://www.13mj.xyz"
-				target="_blank" title="十三名妓導航" rel="nofollow">十三名妓導航</a> <a
-				href=" http://yes102.com" target="_blank" title="Yes104导航"
-				rel="nofollow">Yes104导航</a> <a href="http://www.dafjdh.cc"
-				target="_blank" title="打飞机导航" rel="nofollow">打飞机导航</a> <a
-				href="http://sexiaohai.cc" target="_blank" title="色小孩导航"
-				rel="nofollow">色小孩导航</a> <a href="http://www.aidh.vip"
-				target="_blank" title="爱导航" rel="nofollow">爱导航</a> <a
-				href="http://www.666dh.vip" target="_blank" title="六六六导航"
-				rel="nofollow">六六六导航</a> <a href="http://www.888dh.vip"
-				target="_blank" title="888导航" rel="nofollow">888导航</a> <a
-				href="http://www.999dh.vip" target="_blank" title="九九九导航"
-				rel="nofollow">九九九导航</a> <a href="http://www.xbdh.xyz"
-				target="_blank" title="小白导航" rel="nofollow">小白导航</a> <a
-				href="http://www.nrdh.xyz" target="_blank" title="男人导航"
-				rel="nofollow">男人导航</a> <a href="http://www.mndh.xyz"
-				target="_blank" title="美女导航" rel="nofollow">美女导航</a> <a
-				href="http://www.wndh.xyz" target="_blank" title="万能导航"
-				rel="nofollow">万能导航</a> <a href="http://ak.zhuqinbao.com"
-				target="_blank" title="撸出血精品导航网" rel="nofollow">撸出血精品导航网</a> <a
-				href="http://rs7j.com/" target="_blank" title="手机看片" rel="nofollow">手机看片</a> <a href="http://www.msex365.com" target="_blank" title="msex365偷拍视频"
-				rel="nofollow">msex365偷拍视频</a> <a href="http://mhcdh.top/ "
-				target="_blank" title="小姐姐导航 " rel="nofollow">小姐姐导航 </a> <a
-				href="http://xlydh.top/" target="_blank" title="琪琪约导航"
-				rel="nofollow">琪琪约导航</a> <a href="http://fuck1.ga/" target="_blank"
-				title="色请屋" rel="nofollow">色请屋</a> <a href="http://fuck1.cf/"
-				target="_blank" title="色狼基地" rel="nofollow">色狼基地</a> <a
-				href="http://fuck1.ml/" target="_blank" title="色老板" rel="nofollow">色老板</a> <a href="http://fuck1.gq/" target="_blank" title="色满堂"
-				rel="nofollow">色满堂</a> <a href="http://fuck1.tk/" target="_blank"
-				title="狼人阁" rel="nofollow">狼人阁</a> <a href="http://5esx.com"
-				target="_blank" title="吾二师兄" rel="nofollow">吾二师兄</a> <a
-				href="http://thydh.top/" target="_blank" title="小妹妹导航"
-				rel="nofollow">小妹妹导航</a> <a href="http://xyjdh.top/"
-				target="_blank" title="校花香导航" rel="nofollow">校花香导航</a> <a
-				href="http://mgbdh.top/" target="_blank" title="熊孩子导航"
-				rel="nofollow">熊孩子导航</a> <a href="http://www.daohang678.com"
-				target="_blank" title="导航678" rel="nofollow">导航678</a> <a
-				href="http://www.slwo1.xyz" target="_blank" title="色狼窝導航"
-				rel="nofollow">色狼窝導航</a> <a href="http://www.snfl.xyz"
-				target="_blank" title="少女色導航" rel="nofollow">少女色導航</a> <a
-				href="http://www.2017dh.xyz" target="_blank" title="2017狼導航"
-				rel="nofollow">2017狼導航</a> <a href="http://www.csfl.xyz"
-				target="_blank" title="春色福利導航" rel="nofollow">春色福利導航</a> <a
-				href="http://www.pstdh.xyz" target="_blank" title="品色堂導航"
-				rel="nofollow">品色堂導航</a> <a href="http://www.74fl.xyz"
-				target="_blank" title="【骑士導航】" rel="nofollow">【骑士導航】</a> <a
-				href="http://www.fulidg.xyz" target="_blank" title="福利帝国導航"
-				rel="nofollow">福利帝国導航</a> <a href="http://www.fuliyedh.com"
-				target="_blank" title="福利夜导航" rel="nofollow">福利夜导航</a> <a
-				href="http://www.huafl.xyz" target="_blank" title="華人社導航"
-				rel="nofollow">華人社導航</a> <a href="http://router520.xyz/"
-				target="_blank" title="91导航" rel="nofollow">91导航</a> <a
-				href="http://Hackziyuan.cc" target="_blank" title="HACK资源论坛"
-				rel="nofollow">HACK资源论坛</a> <a href="https://www.qqc.site"
-				target="_blank" title="青青草导航" rel="nofollow">青青草导航</a> <a
-				href="http://www.52a.me" target="_blank" title="我爱操" rel="nofollow">我爱操</a> <a href="http://hmmdh.top/" target="_blank" title="黑科技导航"
-				rel="nofollow">黑科技导航</a> <a href="http://harr888.top/"
-				target="_blank" title="骚妹妹导航" rel="nofollow">骚妹妹导航</a> <a
-				href="http://www.iwgdh.vip" target="_blank" title="萬国精品导航"
-				rel="nofollow">萬国精品导航</a> <a href="http://dier2.xyz"
-				target="_blank" title="第二导航" rel="nofollow">第二导航</a> <a
-				href="http://www.hs180.top" target="_blank" title="如花导航"
-				rel="nofollow">如花导航</a> <a href="http://www.66ydh.com"
-				target="_blank" title="超碰轻草导航" rel="nofollow">超碰轻草导航</a> <a
-				href="http://www.wuyedh8.com" target="_blank" title="午夜导航"
-				rel="nofollow">午夜导航</a> <a href="http://www.javdh8.com"
-				target="_blank" title="JAV导航" rel="nofollow">JAV导航</a> <a
-				href="https://seboshilian.com" target="_blank" title="色博士导航"
-				rel="nofollow">色博士导航</a> <a href="https://ningmengdh.net"
-				target="_blank" title="柠檬导航" rel="nofollow">柠檬导航</a> <a
-				href="https://ningmengdh1.com" target="_blank" title="青柠导航"
-				rel="nofollow">青柠导航</a> <a href="http://xlldh.top" target="_blank"
-				title="小萝莉导航" rel="nofollow">小萝莉导航</a>
-
+				<a href="http://zhaoav.video" target="_blank" title="找AV导航" rel="nofollow">找AV导航</a>
+	
+				<a href="http://www.mdrkj.com/xxfldh" target="_blank" title="小X福利导航" rel="nofollow">小X福利导航</a>
+				
+				<a href="http://www.laosegui.one" target="_blank" title="老色鬼福利导航" rel="nofollow">老色鬼福利导航</a>
+				
+				<a href="https://www.mdrkj.com/136dh/" target="_blank" title="136福利导航" rel="nofollow">136福利导航</a>
+				
+				<a href="http://una123.com" target="_blank" title="123导航" rel="nofollow">123导航</a>
+				
+				<a href="http://www.ifse.xyz" target="_blank" title="爱妃色导航" rel="nofollow">爱妃色导航</a>
+				
+				<a href="http://www.yinuuu.xyz/" target="_blank" title="银色导航 " rel="nofollow">银色导航 </a>
+				
+				<a href="http://xuebdh.club" target="_blank" title="雪B导航 " rel="nofollow">雪B导航 </a>
+				
+				<a href="http://clski.com" target="_blank" title="苍狼导航" rel="nofollow">苍狼导航</a>
+				
+				<a href="http://byyyh.top/" target="_blank" title="秀色导航" rel="nofollow">秀色导航</a>
+				
+				<a href="http://jzdh.in/" target="_blank" title="九州导航" rel="nofollow">九州导航</a>
+				
+				<a href="http://www.amen168.com" target="_blank" title="A门导航" rel="nofollow">A门导航</a>
+				
+				<a href="http://www.mn1.club/" target="_blank" title="媚娘福利导航" rel="nofollow">媚娘福利导航</a>
+				
+				<a href="http://www.cxdh1.xyz" target="_blank" title="插穴福利导航" rel="nofollow">插穴福利导航</a>
+				
+				<a href=" http://www.bjh.space" target="_blank" title="爆菊花福利导航" rel="nofollow">爆菊花福利导航</a>
+				
+				<a href="http://www.pstdh.xyz" target="_blank" title="品色堂導航" rel="nofollow">品色堂導航</a>
+				
+				<a href="http://www.13mj.xyz" target="_blank" title="十三名妓導航" rel="nofollow">十三名妓導航</a>
+				
+				<a href=" http://yes102.com" target="_blank" title="Yes104导航" rel="nofollow">Yes104导航</a>
+				
+				<a href="http://www.dafjdh.cc" target="_blank" title="打飞机导航" rel="nofollow">打飞机导航</a>
+				
+				<a href="http://sexiaohai.cc" target="_blank" title="色小孩导航" rel="nofollow">色小孩导航</a>
+				
+				<a href="http://www.aidh.vip" target="_blank" title="爱导航" rel="nofollow">爱导航</a>
+				
+				<a href="http://www.666dh.vip" target="_blank" title="六六六导航" rel="nofollow">六六六导航</a>
+				
+				<a href="http://www.888dh.vip" target="_blank" title="888导航" rel="nofollow">888导航</a>
+				
+				<a href="http://www.999dh.vip" target="_blank" title="九九九导航" rel="nofollow">九九九导航</a>
+				
+				<a href="http://www.xbdh.xyz" target="_blank" title="小白导航" rel="nofollow">小白导航</a>
+				
+				<a href="http://www.nrdh.xyz" target="_blank" title="男人导航" rel="nofollow">男人导航</a>
+				
+				<a href="http://www.mndh.xyz" target="_blank" title="美女导航" rel="nofollow">美女导航</a>
+				
+				<a href="http://www.wndh.xyz" target="_blank" title="万能导航" rel="nofollow">万能导航</a>
+				
+				<a href="http://ak.zhuqinbao.com" target="_blank" title="撸出血精品导航网" rel="nofollow">撸出血精品导航网</a>
+				
+				<a href="http://rs7j.com/" target="_blank" title="手机看片" rel="nofollow">手机看片</a>
+				
+				<a href="http://www.msex365.com" target="_blank" title="msex365偷拍视频" rel="nofollow">msex365偷拍视频</a>
+				
+				<a href="http://mhcdh.top/ " target="_blank" title="小姐姐导航 " rel="nofollow">小姐姐导航 </a>
+				
+				<a href="http://xlydh.top/" target="_blank" title="琪琪约导航" rel="nofollow">琪琪约导航</a>
+				
+				<a href="http://fuck1.ga/" target="_blank" title="色请屋" rel="nofollow">色请屋</a>
+				
+				<a href="http://fuck1.cf/" target="_blank" title="色狼基地" rel="nofollow">色狼基地</a>
+				
+				<a href="http://fuck1.ml/" target="_blank" title="色老板" rel="nofollow">色老板</a>
+				
+				<a href="http://fuck1.gq/" target="_blank" title="色满堂" rel="nofollow">色满堂</a>
+				
+				<a href="http://fuck1.tk/" target="_blank" title="狼人阁" rel="nofollow">狼人阁</a>
+				
+				<a href="http://5esx.com" target="_blank" title="吾二师兄" rel="nofollow">吾二师兄</a>
+				
+				<a href="http://thydh.top/" target="_blank" title="小妹妹导航" rel="nofollow">小妹妹导航</a>
+				
+				<a href="http://xyjdh.top/" target="_blank" title="校花香导航" rel="nofollow">校花香导航</a>
+				
+				<a href="http://mgbdh.top/" target="_blank" title="熊孩子导航" rel="nofollow">熊孩子导航</a>
+				
+				<a href="http://www.daohang678.com" target="_blank" title="导航678" rel="nofollow">导航678</a>
+				
+				<a href="http://www.slwo1.xyz" target="_blank" title="色狼窝導航" rel="nofollow">色狼窝導航</a>
+				
+				<a href="http://www.snfl.xyz" target="_blank" title="少女色導航" rel="nofollow">少女色導航</a>
+				
+				<a href="http://www.2017dh.xyz" target="_blank" title="2017狼導航" rel="nofollow">2017狼導航</a>
+				
+				<a href="http://www.csfl.xyz" target="_blank" title="春色福利導航" rel="nofollow">春色福利導航</a>
+				
+				<a href="http://www.pstdh.xyz" target="_blank" title="品色堂導航" rel="nofollow">品色堂導航</a>
+				
+				<a href="http://www.74fl.xyz" target="_blank" title="【骑士導航】" rel="nofollow">【骑士導航】</a>
+				
+				<a href="http://www.fulidg.xyz" target="_blank" title="福利帝国導航" rel="nofollow">福利帝国導航</a>
+				
+				<a href="http://www.fuliyedh.com" target="_blank" title="福利夜导航" rel="nofollow">福利夜导航</a>
+				
+				<a href="http://www.huafl.xyz" target="_blank" title="華人社導航" rel="nofollow">華人社導航</a>
+				
+				<a href="http://router520.xyz/" target="_blank" title="91导航" rel="nofollow">91导航</a>
+				
+				<a href="http://Hackziyuan.cc" target="_blank" title="HACK资源论坛" rel="nofollow">HACK资源论坛</a>
+				
+				<a href="https://www.qqc.site" target="_blank" title="青青草导航" rel="nofollow">青青草导航</a>
+				
+				<a href="http://www.52a.me" target="_blank" title="我爱操" rel="nofollow">我爱操</a>
+				
+				<a href="http://hmmdh.top/" target="_blank" title="黑科技导航" rel="nofollow">黑科技导航</a>
+				
+				<a href="http://harr888.top/" target="_blank" title="骚妹妹导航" rel="nofollow">骚妹妹导航</a>
+				
+				<a href="http://www.iwgdh.vip" target="_blank" title="萬国精品导航" rel="nofollow">萬国精品导航</a>
+				
+				<a href="http://dier2.xyz" target="_blank" title="第二导航" rel="nofollow">第二导航</a>
+				
+				<a href="http://www.hs180.top" target="_blank" title="如花导航" rel="nofollow">如花导航</a>
+				
+				<a href="http://www.66ydh.com" target="_blank" title="超碰轻草导航" rel="nofollow">超碰轻草导航</a>
+				
+				<a href="http://www.wuyedh8.com" target="_blank" title="午夜导航" rel="nofollow">午夜导航</a>
+				
+				<a href="http://www.javdh8.com" target="_blank" title="JAV导航" rel="nofollow">JAV导航</a>
+				
+				<a href="https://seboshilian.com" target="_blank" title="色博士导航" rel="nofollow">色博士导航</a>
+				
+				<a href="https://ningmengdh.net" target="_blank" title="柠檬导航" rel="nofollow">柠檬导航</a>
+				
+				<a href="https://ningmengdh1.com" target="_blank" title="青柠导航" rel="nofollow">青柠导航</a>
+				
+				<a href="http://xlldh.top" target="_blank" title="小萝莉导航" rel="nofollow">小萝莉导航</a>
 		</div>
 			<!-- //footer -->
 		</div>

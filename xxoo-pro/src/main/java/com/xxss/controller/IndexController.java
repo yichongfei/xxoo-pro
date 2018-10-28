@@ -54,6 +54,31 @@ public class IndexController {
 	}
 	
 	/**
+	 * 获取左侧的导航
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/leftdh")
+	public String leftdh(Model model, HttpServletRequest request) {
+		return "leftdh";
+	}
+	
+	
+	/**
+	 * 获取header
+	 * @param model
+	 * @param request
+	 * @return
+	 */
+	@RequestMapping("/headerss")
+	public String header(Model model, HttpServletRequest request) {
+		return "header";
+	}
+	
+	
+	
+	/**
 	 * 根据分类查询
 	 * @param category
 	 * @param page
