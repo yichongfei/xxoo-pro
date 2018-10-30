@@ -1,13 +1,54 @@
+<style>
+nav.navbar.navbar-inverse.navbar-fixed-top {
+    padding: 0 0px !important;
+    
+}
+#headbtn{
+	padding:0px;
+	height:50px;
+	background:url('/images/logo.png') left center no-repeat;
+	background-size:auto 50px;
+}
+.signin a {
+    padding: 8px 10px !important;
+}
+.signin {
+    margin: 1.4em 0 0 0.5em !important;
+    padding-right: 5px !important;
+}
+#main-login-button{
+    margin-left: 0px !important;
+}
+#favoritebtn{
+	height:35px;
+	line-height:35px;
+	text-align:center;
+	color:#fff;
+	background: linear-gradient(90deg, #496eaa, #944fa8, #a8804f, #496eaa);
+	background-size:1400% 300%;
+	animation:mymove 5s ease infinite;
+	-webkit-animation: mymove 5s ease infinite;
+	-moz-animation: mymove 5s ease infinite;
+}
+#favoritebtn span{
+	cursor:pointer;
+	color:#ff0;
+}
+@keyframes mymove
+{
+	 0% {
+		background-position: 0% 0%; }
+		50% {
+		background-position: 50% 100%; }
+		100% {
+		 background-position: 100% 0%; }
+}
+
+</style>
 <div class="container-fluid">
-        <div class="navbar-header">
-          <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#navbar" aria-expanded="false" aria-controls="navbar">
-            <span class="sr-only">Toggle navigation</span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-            <span class="icon-bar"></span>
-          </button>
-          <a class="navbar-brand" href="/"><h1><img src="/images/logo1.png" alt="" style="  height: 50px;width: auto;" /></h1></a>
-        </div>
+		<div class="row" id="favoritebtn">建议您收藏我们的地址发布网址，<span><a target="blank" href="https://github.com/yichongfeia/xxss">点击这里收藏我们的地址</a></span></div>
+</div>
+<div class="container-fluid" id="headbtn">
         <div id="navbar" class="navbar-collapse collapse">
 			<div class="header-top-right">
 				<div class="signin" id="main-signup-button">
